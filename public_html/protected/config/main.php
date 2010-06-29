@@ -75,4 +75,12 @@ return array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
 	),
+ 
+    'modules'=>array(
+        'gii'=>array(
+            'class'=>'system.gii.GiiModule',
+            'password'=>'fpGiiPass',
+        ),
+    ),
+	
 );
