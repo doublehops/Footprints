@@ -26,7 +26,9 @@ gstEnabled tinyint(4) NOT NULL,
 gstRate decimal(5,2),
 timeOffset varchar(5) NOT NULL,
 active tinyint(4) NOT NULL,
+created datetime,
 lastModified datetime,
+lastUpdatedBy int(32) NOT NULL,
 primary key(`id`)
 );
 
@@ -40,7 +42,9 @@ id int(32) auto_increment NOT NULL,
 businessId int(32) NOT NULL,
 contactInfoId int(32) NOT NULL,
 active tinyint(4) NOT NULL,
+created datetime,
 lastModified datetime,
+lastUpdatedBy int(32) NOT NULL,
 primary key(`id`)
 );
 
@@ -49,7 +53,9 @@ id int(32) auto_increment NOT NULL,
 businessId int(32) NOT NULL,
 contactInfoId int(32) NOT NULL,
 active tinyint(4) NOT NULL,
+created datetime,
 lastModified datetime,
+lastUpdatedBy int(32) NOT NULL,
 primary key(`id`)
 );
 
@@ -93,7 +99,9 @@ sentTo varchar(255) NOT NULL,
 clientNotes text,
 invoiceNotes text,
 status tinyint(4) NOT NULL,
+created datetime,
 lastModified datetime,
+lastUpdatedBy int(32) NOT NULL,
 primary key(`id`)
 );
 
@@ -104,7 +112,9 @@ jobName varchar(100) NOT NULL,
 jobDescription text,
 jobRate decimal(9,2) NOT NULL,
 status tinyint(4) NOT NULL,
+created datetime,
 lastModified datetime,
+lastUpdatedBy int(32) NOT NULL,
 primary key(`id`)
 );
 
@@ -118,7 +128,9 @@ jobRate decimal(9,2) NOT NULL,
 jobQuantity decimal(9,2) NOT NULL,
 jobNotes text,
 jobStatus tinyint(4) NOT NULL,
+created datetime,
 lastModified datetime,
+lastUpdatedBy int(32) NOT NULL,
 primary key(`id`)
 );
 
@@ -128,6 +140,7 @@ businessId int(32) NOT NULL,
 expenseName varchar(100) NOT NULL,
 expenseDescription text,
 status tinyint(4) NOT NULL,
+lastUpdatedBy int(32) NOT NULL,
 lastModified datetime,
 primary key(`id`)
 );
@@ -139,6 +152,7 @@ expenseName varchar(100) NOT NULL,
 expenseDescription text,
 expenseTotal decimal(9,2) NOT NULL,
 status tinyint(4) NOT NULL,
+lastUpdatedBy int(32) NOT NULL,
 lastModified datetime,
 primary key(`id`)
 );
