@@ -85,13 +85,6 @@ class UserController extends Controller
 					$UserExtended->save();
 					$this->redirect(array('view','id'=>$model->id));
 				}
-//				$model->save();
-//				$UserExtended->uId = $model->id;
-//				if($UserExtended->validate())
-//				{
-//					$UserExtended->save();
-//					$this->redirect(array('view','id'=>$model->id));
-//				}
 			}
 			
 		}
@@ -118,11 +111,16 @@ class UserController extends Controller
 		{
 			$model->attributes=$_POST['User'];
 			$UserExtended->attributes=$_POST['UserExtended'];
-			if($model->save())
+			
+			if($model->validate() && $UserExtended->validate())
 			{
-				$UserExtended->save();
-				$this->redirect(array('view','id'=>$model->id));
+				if($model->save())
+				{
+					$UserExtended->save();
+					$this->redirect(array('view','id'=>$model->id));
+				}				
 			}
+
 				
 		}
 
