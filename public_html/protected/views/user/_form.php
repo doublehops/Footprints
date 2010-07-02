@@ -40,6 +40,12 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($UserExtended,'currentBusinessId'); ?>
+		<?php echo $form->dropDownList($UserExtended,'currentBusinessId', CHtml::listData(Business::model()->findAll() , 'id', 'businessName') ); ?>
+		<?php echo $form->error($UserExtended,'currentBusinessId'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'active'); ?>
 		<?php echo $form->checkbox($model,'active'); ?>
 		<?php echo $form->error($model,'active'); ?>
