@@ -25,10 +25,10 @@ AssetPath varchar(255) NOT NULL,
 gstEnabled tinyint(4) NOT NULL,
 gstRate decimal(5,2),
 timeOffset varchar(5) NOT NULL,
-active tinyint(4) NOT NULL,
 created datetime,
 lastModified datetime,
 lastUpdatedBy int(32) NOT NULL,
+active tinyint(4) NOT NULL,
 primary key(`id`)
 );
 
