@@ -40,7 +40,7 @@ class UserExtended extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('uId, timeOffset', 'required'),
-			array('uId, currentBusinessId', 'numerical', 'integerOnly'=>true),
+			array('uId, currentBusinessId, timeOffset', 'numerical', 'integerOnly'=>true),
 			array('timeOffset', 'length', 'max'=>5),
 			array('lastModified', 'safe'),
 			// The following rule is used by search().

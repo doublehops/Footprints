@@ -44,6 +44,7 @@ class User extends CActiveRecord
 			array('username, password, email, active', 'required'),
 			array('active', 'numerical', 'integerOnly'=>true),
 			array('username, password, email', 'length', 'max'=>128),
+			array('email', 'email'),
 			array('profile, lastModified', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -79,6 +80,13 @@ class User extends CActiveRecord
 		);
 	}
 
+	protected function beforeValidate()
+	{
+		$this->lastModified=date('Y-m-d H:i:s');
+
+		return true;
+	}
+	
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
