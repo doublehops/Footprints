@@ -44,8 +44,9 @@ class Business extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('businessName, AssetPath, gstEnabled, timeOffset, lastUpdatedBy, active', 'required'),
-			array('gstEnabled, lastUpdatedBy, active', 'numerical', 'integerOnly'=>true),
+			array('businessName, AssetPath', 'required'),
+			array('gstEnabled, lastUpdatedBy, timeOffset, active', 'numerical', 'integerOnly'=>true),
+			array('gstRate', 'numerical'),
 			array('businessName, AssetPath', 'length', 'max'=>255),
 			array('gstRate, timeOffset', 'length', 'max'=>5),
 			array('created, lastModified', 'safe'),
@@ -85,6 +86,23 @@ class Business extends CActiveRecord
 		);
 	}
 
+	/**
+	 * Prepares attributes before performing validation.
+	 */
+	protected function beforeValidate()
+	{
+		if($this->isNewRecord)
+		{
+			$this->created=$this->lastModified=date('Y-m-d H:i:s');
+			$this->lastUpdatedBy=Yii::app()->user->id;
+		}
+		else
+		{
+			$this->lastModified=date('Y-m-d H:i:s');
+		}
+		return true;
+	}
+	
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.

@@ -23,7 +23,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'gstEnabled'); ?>
-		<?php echo $form->textField($model,'gstEnabled'); ?>
+		<?php echo $form->checkbox($model,'gstEnabled'); ?>
 		<?php echo $form->error($model,'gstEnabled'); ?>
 	</div>
 
@@ -40,26 +40,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'created'); ?>
-		<?php echo $form->textField($model,'created'); ?>
-		<?php echo $form->error($model,'created'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'lastModified'); ?>
-		<?php echo $form->textField($model,'lastModified'); ?>
-		<?php echo $form->error($model,'lastModified'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'lastUpdatedBy'); ?>
-		<?php echo $form->textField($model,'lastUpdatedBy'); ?>
-		<?php echo $form->error($model,'lastUpdatedBy'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'active'); ?>
-		<?php echo $form->textField($model,'active'); ?>
+		<?php echo $form->checkbox($model,'active'); ?>
 		<?php echo $form->error($model,'active'); ?>
 	</div>
 
