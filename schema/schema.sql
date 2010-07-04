@@ -40,7 +40,6 @@ BusinessId int(32) NOT NULL
 CREATE TABLE Client (
 id int(32) auto_increment NOT NULL,
 businessId int(32) NOT NULL,
-contactInfoId int(32) NOT NULL,
 active tinyint(4) NOT NULL,
 created datetime,
 lastModified datetime,
@@ -51,7 +50,6 @@ primary key(`id`)
 CREATE TABLE Creditor (
 id int(32) auto_increment NOT NULL,
 businessId int(32) NOT NULL,
-contactInfoId int(32) NOT NULL,
 active tinyint(4) NOT NULL,
 created datetime,
 lastModified datetime,
@@ -61,6 +59,7 @@ primary key(`id`)
 
 CREATE TABLE ContactInfo (
 id int(32) auto_increment NOT NULL,
+pId int(32) NOT NULL,
 name varchar(255) NOT NULL,
 address1 varchar(255) NOT NULL,
 address2 varchar(255) NOT NULL,
@@ -80,8 +79,9 @@ contactFax varchar(25) NOT NULL,
 contactEmail varchar(100) NOT NULL,
 accountEmail varchar(100) NOT NULL,
 notes text,
+created datetime,
 lastModified datetime,
-primary key(`id`)
+lastUpdatedBy int(32) NOT NULL,primary key(`id`)
 );
 
 CREATE TABLE Invoice (
