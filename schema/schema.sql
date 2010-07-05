@@ -90,18 +90,41 @@ id int(32) auto_increment NOT NULL,
 clientId int(32) NOT NULL,
 invoiceDate datetime,
 dueDate datetime,
-paidDate datetime,
 invoiceTotal decimal(9,2) NOT NULL,
-sent tinyint(4) NOT NULL,
 clientNotes text,
 invoiceNotes text,
-status tinyint(4) NOT NULL,
-active tinyint(4) NOT NULL,
+status tinyint(4) NOT NULL DEFAULT '0',
+active tinyint(4) NOT NULL DEFAULT '1',
 created datetime,
 lastModified datetime,
 lastUpdatedBy int(32) NOT NULL,
 primary key(`id`)
 );
+
+CREATE TABLE InvoicePayment (
+id int(32) NOT NULL auto_increment,
+invoiceId int(32) NOT NULL,
+amount decimal(9,2) NOT NULL,
+paymentType tinyint(4) NOT NULL,
+paymentDate datetime,
+notes text,
+status tinyint(4) NOT NULL DEFAULT '1',
+created datetime,
+lastModified datetime,
+lastUpdatedBy int(32) NOT NULL,
+primary key(`id`)
+);
+
+CREATE TABLE PaymentType (
+id int(32) NOT NULL AUTO_INCREMENT,
+name varchar(50) NOT NULL,
+active tinyint(4) NOT NULL DEFAULT '1',
+primary key(`id`)
+);
+
+INSERT INTO PaymentType VALUES ('','Cash','1');
+INSERT INTO PaymentType VALUES ('','Direct Deposit','1');
+INSERT INTO PaymentType VALUES ('','Cheque','1');
 
 CREATE TABLE InvoiceSent (
 id int(32) NOT NULL auto_increment,
@@ -109,6 +132,8 @@ invoiceId int(32) NOT NULL,
 method varchar(20) NOT NULL,
 sentTime datetime,
 sentTo varchar(255),
+notes text,
+active tinyint(4) NOT NULL DEFAULT '1',
 primary key(`id`)
 );
 
