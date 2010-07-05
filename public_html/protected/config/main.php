@@ -82,7 +82,7 @@ return array(
     'modules'=>array(
         'gii'=>array(
             'class'=>'system.gii.GiiModule',
-            'password'=>'fpGiiPass',
+            'password'=>'fpass',
         ),
     ),
 	
