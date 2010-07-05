@@ -87,21 +87,27 @@ lastUpdatedBy int(32) NOT NULL,primary key(`id`)
 CREATE TABLE Invoice (
 id int(32) auto_increment NOT NULL,
 clientId int(32) NOT NULL,
-paid tinyint(4) NOT NULL,
 invoiceDate datetime,
 dueDate datetime,
 paidDate datetime,
 invoiceTotal decimal(9,2) NOT NULL,
 sent tinyint(4) NOT NULL,
-sentDate datetime,
-sentMethod varchar(255) NOT NULL,
-sentTo varchar(255) NOT NULL,
 clientNotes text,
 invoiceNotes text,
 status tinyint(4) NOT NULL,
+active tinyint(4) NOT NULL,
 created datetime,
 lastModified datetime,
 lastUpdatedBy int(32) NOT NULL,
+primary key(`id`)
+);
+
+CREATE TABLE InvoiceSent (
+id int(32) NOT NULL auto_increment,
+invoiceId int(32) NOT NULL,
+method varchar(20) NOT NULL,
+sentTime datetime,
+sentTo varchar(255),
 primary key(`id`)
 );
 
@@ -111,6 +117,7 @@ businessId int(32) NOT NULL,
 jobName varchar(100) NOT NULL,
 jobDescription text,
 jobRate decimal(9,2) NOT NULL,
+jobCode varchar(10) NOT NULL,
 status tinyint(4) NOT NULL,
 created datetime,
 lastModified datetime,
@@ -140,6 +147,7 @@ businessId int(32) NOT NULL,
 expenseName varchar(100) NOT NULL,
 expenseDescription text,
 status tinyint(4) NOT NULL,
+expenseCode varchar(10) NOT NULL,
 lastUpdatedBy int(32) NOT NULL,
 lastModified datetime,
 primary key(`id`)
