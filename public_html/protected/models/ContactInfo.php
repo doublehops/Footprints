@@ -9,7 +9,6 @@ class ContactInfo extends CActiveRecord
 	 * The followings are the available columns in table 'ContactInfo':
 	 * @var integer $id
 	 * @var integer $pId
-	 * @var string $name
 	 * @var string $address1
 	 * @var string $address2
 	 * @var string $city
@@ -58,9 +57,9 @@ class ContactInfo extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
+			array('', 'required'),
 			array('pId, lastUpdatedBy', 'numerical', 'integerOnly'=>true),
-			array('name, address1, address2, mailAddress1, MailAddress2, contactName', 'length', 'max'=>255),
+			array('address1, address2, mailAddress1, MailAddress2, contactName', 'length', 'max'=>255),
 			array('city, state, mailCity, mailState, contactEmail, accountEmail', 'length', 'max'=>100),
 			array('postcode, mailPostcode', 'length', 'max'=>5),
 			array('abn', 'length', 'max'=>20),
@@ -68,7 +67,7 @@ class ContactInfo extends CActiveRecord
 			array('notes, created, lastModified', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, pId, name, address1, address2, city, state, postcode, mailAddress1, MailAddress2, mailCity, mailState, mailPostcode, abn, contactName, contactNumber, contactMobile, contactFax, contactEmail, accountEmail, notes, created, lastModified, lastUpdatedBy', 'safe', 'on'=>'search'),
+			array('id, pId, address1, address2, city, state, postcode, mailAddress1, MailAddress2, mailCity, mailState, mailPostcode, abn, contactName, contactNumber, contactMobile, contactFax, contactEmail, accountEmail, notes, created, lastModified, lastUpdatedBy', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -91,7 +90,6 @@ class ContactInfo extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'pId' => 'P',
-			'name' => 'Name',
 			'address1' => 'Address1',
 			'address2' => 'Address2',
 			'city' => 'City',
@@ -148,8 +146,6 @@ class ContactInfo extends CActiveRecord
 		$criteria->compare('id',$this->id);
 
 		$criteria->compare('pId',$this->pId);
-
-		$criteria->compare('name',$this->name,true);
 
 		$criteria->compare('address1',$this->address1,true);
 

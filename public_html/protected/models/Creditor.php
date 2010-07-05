@@ -8,6 +8,7 @@ class Creditor extends CActiveRecord
 	/**
 	 * The followings are the available columns in table 'Creditor':
 	 * @var integer $id
+	 * @var integer $name
 	 * @var integer $businessId
 	 * @var integer $active
 	 * @var string $created
@@ -40,12 +41,12 @@ class Creditor extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('', 'required'),
+			array('name', 'required'),
 			array('businessId, active, lastUpdatedBy', 'numerical', 'integerOnly'=>true),
-			array('created, lastModified', 'safe'),
+			array('name, created, lastModified', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, businessId, active, created, lastModified, lastUpdatedBy', 'safe', 'on'=>'search'),
+			array('id, name, businessId, active, created, lastModified, lastUpdatedBy', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,6 +69,7 @@ class Creditor extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'name' => 'Name',
 			'businessId' => 'Business',
 			'active' => 'Active',
 			'created' => 'Created',
@@ -107,6 +109,8 @@ class Creditor extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+
+		$criteria->compare('name',$this->name);
 
 		$criteria->compare('businessId',$this->businessId);
 
