@@ -29,13 +29,13 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'clientNotes'); ?>
-		<?php echo $form->textArea($model,'clientNotes',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->textArea($model,'clientNotes',array('rows'=>3, 'cols'=>80)); ?>
 		<?php echo $form->error($model,'clientNotes'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'invoiceNotes'); ?>
-		<?php echo $form->textArea($model,'invoiceNotes',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->textArea($model,'invoiceNotes',array('rows'=>3, 'cols'=>80)); ?>
 		<?php echo $form->error($model,'invoiceNotes'); ?>
 	</div>
 

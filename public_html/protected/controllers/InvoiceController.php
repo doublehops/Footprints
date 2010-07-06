@@ -2,6 +2,11 @@
 
 class InvoiceController extends Controller
 {
+	/*
+	 * Set default due date offset (in days) from current date.
+	 */
+	private $dueDateOffset = 14;
+	
 	/**
 	 * @var string the default layout for the views. Defaults to 'column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
@@ -75,6 +80,11 @@ class InvoiceController extends Controller
 			$model->attributes=$_POST['Invoice'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
+		}
+		else
+		{
+			$model->invoiceDate = date('Y-m-d');
+			$model->dueDate = date('Y-m-d', time()+ $this->dueDateOffset*24*60*60);
 		}
 
 		$this->render('create',array(
