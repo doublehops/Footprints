@@ -33,6 +33,11 @@
 				array('label'=>'Businesses', 'url'=>array('/business/admin')),
 				array('label'=>'Clients', 'url'=>array('/client/admin')),
 				array('label'=>'Creditors', 'url'=>array('/creditor/admin')),
+				array('label'=>'Invoices', 'url'=>array('/invoice/admin'), 'items'=>array(
+					array('label'=>'Payments', 'url'=>array('/invoicePayment/admin')),
+					array('label'=>'Payment Types', 'url'=>array('/paymentType/admin')),
+					array('label'=>'Invoice sent records', 'url'=>array('/invoiceSent/admin')),
+				)),
 //				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 //				array('label'=>'Contact', 'url'=>array('/site/contact')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
