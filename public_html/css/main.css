@@ -80,6 +80,42 @@ body
 	text-decoration:none;
 }
 
+/* Added custom css to allow for drop down menu */
+
+#mainmenu li {
+	position: relative;	
+}
+
+#mainmenu ul ul {
+	position: absolute;	
+	margin: 0;
+	padding: 0;
+	top: 20px;
+	left: 0;
+}
+
+#mainmenu ul li ul {
+	display: none;
+	background: #C9E0ED;
+}
+
+#mainmenu ul li:hover ul {
+	display: block;
+}
+
+#mainmenu ul:hover li ul li {
+	margin: 0;
+	padding: 0;
+}
+
+#mainmenu ul:hover li ul li a {
+	display: block;
+	width: 200px;
+	margin: 0;
+	padding: 5px;
+}
+/* End custom css for dropdown menu */
+
 div.flash-error, div.flash-notice, div.flash-success
 {
 	padding:.8em;
