@@ -144,7 +144,7 @@ class Expense extends CActiveRecord
 
 		$criteria->compare('expenseDescription',$this->expenseDescription,true);
 
-		$criteria->compare('expenseType',$this->$expenseType,true);
+		$criteria->compare('expenseType',$this->expenseType,true);
 
 		$criteria->compare('expenseTotal',$this->expenseTotal,true);
 
