@@ -1,6 +1,6 @@
 <?php
 
-class PaymentTypeController extends Controller
+class PaymentMethodController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to 'column2', meaning
@@ -65,14 +65,14 @@ class PaymentTypeController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new PaymentType;
+		$model=new PaymentMethod;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['PaymentType']))
+		if(isset($_POST['PaymentMethod']))
 		{
-			$model->attributes=$_POST['PaymentType'];
+			$model->attributes=$_POST['PaymentMethod'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -93,9 +93,9 @@ class PaymentTypeController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['PaymentType']))
+		if(isset($_POST['PaymentMethod']))
 		{
-			$model->attributes=$_POST['PaymentType'];
+			$model->attributes=$_POST['PaymentMethod'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -129,7 +129,7 @@ class PaymentTypeController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('PaymentType');
+		$dataProvider=new CActiveDataProvider('PaymentMethod');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -140,9 +140,9 @@ class PaymentTypeController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new PaymentType('search');
-		if(isset($_GET['PaymentType']))
-			$model->attributes=$_GET['PaymentType'];
+		$model=new PaymentMethod('search');
+		if(isset($_GET['PaymentMethod']))
+			$model->attributes=$_GET['PaymentMethod'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -158,7 +158,7 @@ class PaymentTypeController extends Controller
 		if($this->_model===null)
 		{
 			if(isset($_GET['id']))
-				$this->_model=PaymentType::model()->findbyPk($_GET['id']);
+				$this->_model=PaymentMethod::model()->findbyPk($_GET['id']);
 			if($this->_model===null)
 				throw new CHttpException(404,'The requested page does not exist.');
 		}

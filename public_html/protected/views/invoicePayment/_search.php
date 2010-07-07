@@ -21,8 +21,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'paymentType'); ?>
-		<?php echo $form->textField($model,'paymentType'); ?>
+		<?php echo $form->label($model,'paymentMethod'); ?>
+		<?php echo $form->textField($model,'paymentMethod'); ?>
 	</div>
 
 	<div class="row">

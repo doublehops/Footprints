@@ -105,7 +105,7 @@ CREATE TABLE InvoicePayment (
 id int(32) NOT NULL auto_increment,
 invoiceId int(32) NOT NULL,
 amount decimal(9,2) NOT NULL,
-paymentType tinyint(4) NOT NULL,
+paymentMethod tinyint(4) NOT NULL,
 paymentDate datetime,
 notes text,
 active tinyint(4) NOT NULL DEFAULT '1',
@@ -115,16 +115,16 @@ lastUpdatedBy int(32) NOT NULL,
 primary key(`id`)
 );
 
-CREATE TABLE PaymentType (
+CREATE TABLE PaymentMethod (
 id int(32) NOT NULL AUTO_INCREMENT,
 name varchar(50) NOT NULL,
 active tinyint(4) NOT NULL DEFAULT '1',
 primary key(`id`)
 );
 
-INSERT INTO PaymentType VALUES ('','Cash','1');
-INSERT INTO PaymentType VALUES ('','Direct Deposit','1');
-INSERT INTO PaymentType VALUES ('','Cheque','1');
+INSERT INTO PaymentMethod VALUES ('','Cash','1');
+INSERT INTO PaymentMethod VALUES ('','Direct Deposit','1');
+INSERT INTO PaymentMethod VALUES ('','Cheque','1');
 
 CREATE TABLE InvoiceSent (
 id int(32) NOT NULL auto_increment,

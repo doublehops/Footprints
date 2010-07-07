@@ -22,9 +22,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'paymentType'); ?>
-		<?php echo $form->dropDownList($model,'paymentType', CHtml::listData(PaymentType::model()->findAll() , 'id', 'name') ); ?>
-		<?php echo $form->error($model,'paymentType'); ?>
+		<?php echo $form->labelEx($model,'paymentMethod'); ?>
+		<?php echo $form->dropDownList($model,'paymentMethod', CHtml::listData(PaymentMethod::model()->findAll() , 'id', 'name') ); ?>
+		<?php echo $form->error($model,'paymentMethod'); ?>
 	</div>
 
 	<div class="row">

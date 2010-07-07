@@ -1,12 +1,12 @@
 <?php
 
 /**
- * This is the model class for table "PaymentType".
+ * This is the model class for table "PaymentMethod".
  */
-class PaymentType extends CActiveRecord
+class PaymentMethod extends CActiveRecord
 {
 	/**
-	 * The followings are the available columns in table 'PaymentType':
+	 * The followings are the available columns in table 'PaymentMethod':
 	 * @var integer $id
 	 * @var string $name
 	 * @var integer $active
@@ -14,7 +14,7 @@ class PaymentType extends CActiveRecord
 
 	/**
 	 * Returns the static model of the specified AR class.
-	 * @return PaymentType the static model class
+	 * @return PaymentMethod the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -26,7 +26,7 @@ class PaymentType extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'PaymentType';
+		return 'PaymentMethod';
 	}
 
 	/**

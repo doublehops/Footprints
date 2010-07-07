@@ -4,8 +4,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Create PaymentType', 'url'=>array('create')),
-	array('label'=>'Manage PaymentType', 'url'=>array('admin')),
+	array('label'=>'Create PaymentMethod', 'url'=>array('create')),
+	array('label'=>'Manage PaymentMethod', 'url'=>array('admin')),
 );
 ?>
 

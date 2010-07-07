@@ -35,7 +35,7 @@
 				array('label'=>'Creditors', 'url'=>array('/creditor/admin')),
 				array('label'=>'Invoices', 'url'=>array('/invoice/admin'), 'items'=>array(
 					array('label'=>'Payments', 'url'=>array('/invoicePayment/admin')),
-					array('label'=>'Payment Types', 'url'=>array('/paymentType/admin')),
+					array('label'=>'Payment Types', 'url'=>array('/paymentMethod/admin')),
 					array('label'=>'Invoice sent records', 'url'=>array('/invoiceSent/admin')),
 				)),
 //				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),

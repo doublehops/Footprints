@@ -12,8 +12,8 @@
 	<?php echo CHtml::encode($data->amount); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('paymentType')); ?>:</b>
-	<?php echo CHtml::encode($data->paymentType); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('paymentMethod')); ?>:</b>
+	<?php echo CHtml::encode($data->paymentMethod); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('paymentDate')); ?>:</b>

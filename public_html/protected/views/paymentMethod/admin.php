@@ -5,8 +5,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List PaymentType', 'url'=>array('index')),
-	array('label'=>'Create PaymentType', 'url'=>array('create')),
+	array('label'=>'List PaymentMethod', 'url'=>array('index')),
+	array('label'=>'Create PaymentMethod', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

@@ -21,7 +21,7 @@ $this->menu=array(
 		'id',
 		'invoiceId',
 		'amount',
-		'paymentType',
+		'paymentMethod',
 		'paymentDate',
 		'notes',
 		'active',

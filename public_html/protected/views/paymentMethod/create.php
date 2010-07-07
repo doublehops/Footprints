@@ -5,11 +5,11 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List PaymentType', 'url'=>array('index')),
-	array('label'=>'Manage PaymentType', 'url'=>array('admin')),
+	array('label'=>'List PaymentMethod', 'url'=>array('index')),
+	array('label'=>'Manage PaymentMethod', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create PaymentType</h1>
+<h1>Create PaymentMethod</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -10,7 +10,7 @@ class InvoicePayment extends CActiveRecord
 	 * @var integer $id
 	 * @var integer $invoiceId
 	 * @var string $amount
-	 * @var integer $paymentType
+	 * @var integer $paymentMethod
 	 * @var string $paymentDate
 	 * @var string $notes
 	 * @var integer $active
@@ -44,13 +44,13 @@ class InvoicePayment extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('invoiceId, amount, paymentType', 'required'),
-			array('invoiceId, paymentType, active, lastUpdatedBy', 'numerical', 'integerOnly'=>true),
+			array('invoiceId, amount, paymentMethod', 'required'),
+			array('invoiceId, paymentMethod, active, lastUpdatedBy', 'numerical', 'integerOnly'=>true),
 			array('amount', 'length', 'max'=>9),
 			array('paymentDate, notes, created, lastModified', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, invoiceId, amount, paymentType, paymentDate, notes, active, created, lastModified, lastUpdatedBy', 'safe', 'on'=>'search'),
+			array('id, invoiceId, amount, paymentMethod, paymentDate, notes, active, created, lastModified, lastUpdatedBy', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -74,7 +74,7 @@ class InvoicePayment extends CActiveRecord
 			'id' => 'ID',
 			'invoiceId' => 'Invoice',
 			'amount' => 'Amount',
-			'paymentType' => 'Payment Type',
+			'paymentMethod' => 'Payment Method',
 			'paymentDate' => 'Payment Date',
 			'notes' => 'Notes',
 			'active' => 'Active',
@@ -119,7 +119,7 @@ class InvoicePayment extends CActiveRecord
 
 		$criteria->compare('amount',$this->amount,true);
 
-		$criteria->compare('paymentType',$this->paymentType);
+		$criteria->compare('paymentMethod',$this->paymentMethod);
 
 		$criteria->compare('paymentDate',$this->paymentDate,true);
 
