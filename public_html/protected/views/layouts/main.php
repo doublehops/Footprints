@@ -37,6 +37,7 @@
 					array('label'=>'Payments', 'url'=>array('/invoicePayment/admin')),
 					array('label'=>'Payment Types', 'url'=>array('/paymentMethod/admin')),
 					array('label'=>'Invoice sent records', 'url'=>array('/invoiceSent/admin')),
+					array('label'=>'Jobs', 'url'=>array('/job/admin')),
 					array('label'=>'Job Types', 'url'=>array('/jobType/admin')),
 				)),
 //				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
