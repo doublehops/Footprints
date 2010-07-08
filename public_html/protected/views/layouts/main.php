@@ -39,6 +39,8 @@
 					array('label'=>'Invoice sent records', 'url'=>array('/invoiceSent/admin')),
 					array('label'=>'Jobs', 'url'=>array('/job/admin')),
 					array('label'=>'Job Types', 'url'=>array('/jobType/admin')),
+					array('label'=>'Expense Types', 'url'=>array('/expenseType/admin')),
+					array('label'=>'Expenses', 'url'=>array('/expense/admin')),
 				)),
 //				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 //				array('label'=>'Contact', 'url'=>array('/site/contact')),
