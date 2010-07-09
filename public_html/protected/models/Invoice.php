@@ -68,6 +68,7 @@ class Invoice extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+		'client'=>array(self::BELONGS_TO, 'Client', 'clientId'),
 		'invoicePayment'=>array(self::HAS_MANY, 'InvoicePayment', 'invoiceId'),
 		);
 	}
