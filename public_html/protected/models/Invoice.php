@@ -137,6 +137,14 @@ class Invoice extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		// Force model to only show invoices for current business
+		$criteria->alias = 'Invoice';
+		$criteria->join='LEFT JOIN Client ON Client.id=Invoice.clientId';
+		$criteria->condition='Client.businessId='. Yii::app()->userInfo->business;
+			return new CActiveDataProvider('Invoice', array(
+			'criteria'=>$criteria,
+		));
+		
 		$criteria->compare('id',$this->id);
 
 		$criteria->compare('clientId',$this->clientId);
