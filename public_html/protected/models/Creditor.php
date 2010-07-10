@@ -108,9 +108,9 @@ class Creditor extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		// Force model to only show clients for current business
+		// Force model to only show creditors for current business
 		$criteria->condition='businessId='. Yii::app()->userInfo->business;
-			return new CActiveDataProvider('Client', array(
+			return new CActiveDataProvider('Creditor', array(
 			'criteria'=>$criteria,
 		));
 		
