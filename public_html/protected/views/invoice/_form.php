@@ -10,6 +10,12 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'id'); ?>
+		<?php echo $model->id; ?>
+		<?php echo $form->error($model,'id'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'clientId'); ?>
 		<?php echo $form->dropDownList($model,'clientId', CHtml::listData(Client::model()->findAll(array('condition'=>'businessId=:businessId','params'=>array(':businessId'=>Yii::app()->userInfo->business))) , 'id', 'name')); ?>
 		<?php echo $form->error($model,'clientId'); ?>
