@@ -139,7 +139,15 @@ class InvoiceController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Invoice');
+		$dataProvider=new CActiveDataProvider('Invoice',
+			array(
+				'criteria'=>array(
+				'with'=>array('client'),
+				'condition'=>'businessId='. Yii::app()->userInfo->business
+				),
+			)
+		);
+		
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
