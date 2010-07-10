@@ -101,6 +101,8 @@ lastUpdatedBy int(32) NOT NULL,
 primary key(`id`)
 );
 
+ALTER TABLE Invoice AUTO_INCREMENT=1001;
+
 CREATE TABLE InvoicePayment (
 id int(32) NOT NULL auto_increment,
 invoiceId int(32) NOT NULL,
