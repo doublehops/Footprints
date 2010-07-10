@@ -11,7 +11,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'id'); ?>
-		<?php echo $model->id; ?>
+		<?php echo $model->id != NULL ? $model->id : 'New'; ?>
 		<?php echo $form->error($model,'id'); ?>
 	</div>
 
