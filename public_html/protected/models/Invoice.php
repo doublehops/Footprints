@@ -9,6 +9,9 @@ class Invoice extends CActiveRecord
     const STATUS_PARTIALLY_PAID=1;
     const STATUS_PAID=2;
     
+    public $invoiceTotal = 0;
+    public $tax = 0;
+    
 	/**
 	 * The followings are the available columns in table 'Invoice':
 	 * @var integer $id
@@ -69,6 +72,7 @@ class Invoice extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 		'client'=>array(self::BELONGS_TO, 'Client', 'clientId'),
+		'job'=>array(self::HAS_MANY, 'Job', 'invoiceId'),
 		'invoicePayment'=>array(self::HAS_MANY, 'InvoicePayment', 'invoiceId'),
 		);
 	}
@@ -111,7 +115,30 @@ class Invoice extends CActiveRecord
 		}
 		return true;
 	}
-			
+	
+	public function getInvoiceValues()
+	{
+		$invoiceArray = array();
+		
+		foreach( $this->job as $job )
+		{
+			if( $job->active == 1 )
+			{
+				$this->invoiceTotal += $job->jobRate * $job->jobQuantity;
+			}
+		}
+		
+		$invoiceArray['invoiceTotal'] = $this->invoiceTotal;
+		
+		if( Yii::app()->userInfo->gstEnabled == 1 );
+		{
+			$invoiceArray['GSTRate'] = Yii::app()->userInfo->gstRate;
+			$invoiceArray['GSTTotal'] = $this->invoiceTotal / Yii::app()->userInfo->gstRate;
+		}
+		
+		return array( $invoiceArray );
+	}
+	
     public function getStatusOptions()
     {
         return array(

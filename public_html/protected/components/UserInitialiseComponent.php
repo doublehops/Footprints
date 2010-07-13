@@ -21,6 +21,8 @@
 				
 				$this->business = $resultInfo->currentBusinessId;
 				$this->businessName = $business->businessName;
+				$this->gstEnabled = $business->gstEnabled;
+				$this->gstRate = $business->gstRate;
 			}
 		}
 	}
