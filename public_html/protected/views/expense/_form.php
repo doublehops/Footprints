@@ -11,7 +11,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'creditorId'); ?>
-		<?php echo $form->dropDownList($model,'creditorId', CHtml::listData(Creditor::model()->findAll() , 'id', 'name') ); ?>
+		<?php echo $form->dropDownList($model,'creditorId', CHtml::listData(Creditor::model()->findAll(array('condition'=>'businessId=:businessId','params'=>array(':businessId'=>Yii::app()->userInfo->business))) , 'id', 'name') ); ?>
 		<?php echo $form->error($model,'creditorId'); ?>
 	</div>
 
