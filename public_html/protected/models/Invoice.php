@@ -168,6 +168,7 @@ class Invoice extends CActiveRecord
 
 		// Force model to only show invoices for current business
 		$criteria->alias = 'Invoice';
+		$criteria->select = 'Invoice.*';
 		$criteria->join='LEFT JOIN Client ON Client.id=Invoice.clientId';
 		$criteria->condition='Client.businessId='. Yii::app()->userInfo->business;
 			return new CActiveDataProvider('Invoice', array(
