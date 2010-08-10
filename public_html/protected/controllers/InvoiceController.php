@@ -37,7 +37,7 @@ class InvoiceController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','invoiceView'),
+				'actions'=>array('index','view','invoiceView','print'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -67,6 +67,18 @@ class InvoiceController extends Controller
 	public function actionInvoiceView()
 	{
 		$model = $this->loadModel();
+		
+		$this->render('invoiceView',array(
+			'data'=>$model,
+			'invoiceValues'=>$model->getInvoiceValues(),
+		));
+	}
+
+	public function actionPrint()
+	{
+		$model = $this->loadModel();
+		
+		$this->layout = 'invoice';
 		
 		$this->render('invoiceView',array(
 			'data'=>$model,
