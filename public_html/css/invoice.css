@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+
+.view {
+	position: relative;
+	min-height: 125px;
+}
+
+.invoiceInnerLeft {
+	float: left;
+	width: 300px;
+}
+
+.invoiceInnerRight {
+	float: right;
+	width: 300px;
+}

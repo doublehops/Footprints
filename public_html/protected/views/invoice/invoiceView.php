@@ -1,6 +1,6 @@
 <?php
 	$this->menu=array(
-	array('label'=>'Print', 'url'=>array('print', 'id'=>$data->id)),
+	array('label'=>'Print', 'url'=>array('invoicePrint', 'id'=>$data->id)),
 	array('label'=>'Email', 'url'=>array('email', 'id'=>$data->id)),
 	array('label'=>'Email as PDF', 'url'=>array('invoicePdf', 'id'=>$data->id)),
 );
@@ -12,7 +12,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('clientId')); ?>:</b>
-	<?php echo CHtml::encode($data->clientId); ?>
+	<?php echo CHtml::encode($data->client->name); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('invoiceDate')); ?>:</b>

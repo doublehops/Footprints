@@ -13,6 +13,7 @@
 
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/invoice.css" />
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
@@ -21,14 +22,22 @@
 
 <div class="container" id="page">
 
-	<div id="header">
+	<div id="header" class="header">
 		<div id="logo"><?php echo CHtml::encode( Yii::app()->userInfo->businessName ); ?></div>
+		<div>
+			<ul>
+				<li>Doublehops</li>
+				<li>ABN: 50 482 990 306</li>
+				<li>6/8 William St</li>
+				<li>South Yarra</li>
+				<li>Vic, 3141</li>
+				<li>Phone: 0418 998 283</li>
+				<li>Email: damien@doublehops.com </li>
+			</ul>
+		</div>
 	</div><!-- header -->
 
 
-	<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-		'links'=>$this->breadcrumbs,
-	)); ?><!-- breadcrumbs -->
 
 	<?php echo $content; ?>
 

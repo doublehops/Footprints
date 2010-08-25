@@ -11,7 +11,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('clientId')); ?>:</b>
-	<?php echo CHtml::encode($data->clientId); ?>
+	<?php echo CHtml::encode($data->client->name); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('invoiceDate')); ?>:</b>
