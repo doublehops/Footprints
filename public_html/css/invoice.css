@@ -5,6 +5,10 @@ ul, li {
 	padding: 0;
 }
 
+.container {
+	width: 800px;
+}
+
 #header {
 	overflow: hidden;
 	padding-bottom: 10px;
@@ -83,7 +87,7 @@ table, tr, th, td {
 
 table.jobs {
 	margin: 20px;
-	width: 910px;
+	width: 760px;
 }
 
 .jobs th {
@@ -110,7 +114,7 @@ table.jobs {
 
 #paymentOptions {
 	overflow: hidden;
-	margin: 20px;
+	margin: 10px;
 	padding: 10px;
 	border-top: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
@@ -127,6 +131,11 @@ table.jobs {
 
 .paymentDirectDeposit {
 	width: 300px;
+	float: left;
+}
+
+.paymentDirectDeposit span {
+	width: 125px;
 	float: left;
 }
 
