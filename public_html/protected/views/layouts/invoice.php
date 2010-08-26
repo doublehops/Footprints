@@ -42,6 +42,8 @@
 
 	<?php echo $content; ?>
 
+	<hr />
+	
 	<div id="paymentOptions">
 		<h4>Payment options</h4>
 		<div class="paymentPost">
