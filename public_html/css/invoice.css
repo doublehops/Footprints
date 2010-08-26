@@ -1,14 +1,18 @@
 @CHARSET "UTF-8";
 
+ul, li {
+	margin: 0;
+	padding: 0;
+}
+
 #header {
 	overflow: hidden;
 	padding-bottom: 10px;
-	border-bottom: 1px solid #333;
+	border-bottom: 1px solid #ccc;
 }
 
 #logo {
 	float: left;
-	margin-left: 27px;
 	margin-top: 27px;
 	font-size: 400%;
 }
@@ -20,15 +24,14 @@ h1 {
 
 #businessInfo {
 	float: right;
+	margin: 20px 20px 0 0;
 }
 
 #businessInfo ul {
 	list-style-type: none;
-	margin: 10px 15px 0 0;
 }
 
 #businessInfo ul li {
-	margin: 0;
 	font-size: 12px;
 	text-align: right;
 }
@@ -36,32 +39,95 @@ h1 {
 .invoiceContainer {
 	display: block;
 	overflow: hidden;
-	border-bottom: 1px solid #333;
+	border-bottom: 1px solid #ccc;
 	padding-bottom: 10px;
 }
 
 .invoiceContainer ul {
 	list-style-type: none;
-	margin: 0;
-	padding: 0;
-}
-
-.invoiceInnerRight ul li {
-	text-align: right;
-}
-
-.invoiceInnerRight ul li span {
-	float: right;
-	width: 100px;
-	margin-right: 10px;
 }
 
 .invoiceInnerLeft {
 	float: left;
 	width: 300px;
+	margin-left: 20px;
+}
+
+.invoiceInnerLeft h4 {
+	margin-bottom: 3px;
 }
 
 .invoiceInnerRight {
 	float: right;
-	width: 300px;
+	margin-top: 20px;
+	width: 180px;
+	margin-right: 20px;
 }
+
+.invoiceInnerRight ul li {
+	text-align: left;
+}
+
+.invoiceInnerRight ul li span {
+	float: right;
+	width: 100px;
+	text-align: right;
+}
+
+/********************  Jobs table  ***********************/
+
+table, tr, th, td {
+	margin: 5px 0 0 0;
+	padding: 0;
+}
+
+table.jobs {
+	margin: 20px;
+	width: 910px;
+}
+
+.jobs th {
+	padding: 5px 0;
+}
+
+.jobs tr {
+	padding: 15px 0;
+}
+
+.alignRight {
+	text-align: right;
+	width: 120px;
+}
+
+.finalTotal {
+	text-align: right;
+	width: 100px;
+	font-weight: bold;
+	padding-top: 10px;
+}
+
+/********************  Payments options  ***********************/
+
+#paymentOptions {
+	overflow: hidden;
+	margin: 20px;
+	padding: 10px;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
+#paymentOptions ul {
+	list-style-type: none;
+}
+
+.paymentPost {
+	width: 300px;
+	float: left;
+}
+
+.paymentDirectDeposit {
+	width: 300px;
+	float: left;
+}
+
+

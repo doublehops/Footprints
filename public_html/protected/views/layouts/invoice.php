@@ -42,7 +42,26 @@
 
 	<?php echo $content; ?>
 
-
+	<div id="paymentOptions">
+		<h4>Payment options</h4>
+		<div class="paymentPost">
+			<h5>By post:</h5>
+			<ul>
+				<li>6/8 William St</li>
+				<li>South Yarra</li>
+				<li>Vic, 3141</li>
+			</ul>
+		</div>
+		<div class="paymentDirectDeposit">
+			<h5>By direct deposit:</h5>
+			<ul>
+				<li><span>Bank:</span> ANZ</li>
+				<li><span>Account name:</span> Doublehops</li>
+				<li><span>BSB:</span> 013 400</li>
+				<li><span>Account number:</span> 2507 40431</li>
+			</ul>
+		</div>
+	</div>
 
 </div><!-- page -->
 
