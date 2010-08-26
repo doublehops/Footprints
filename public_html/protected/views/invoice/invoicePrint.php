@@ -1,7 +1,7 @@
 
-<div class="view">
+<div class="invoiceContainer">
 	<div class="invoiceInnerLeft">
-		<h2>Customer details:</h2>
+		<h3>Client details:</h3>
 		<ul>
 			<li><?php echo CHtml::encode($data->client->name); ?></li>
 			<li><?php echo CHtml::encode($data->client->contactInfo->address1); ?></li>
@@ -14,9 +14,9 @@
 
 	<div class="invoiceInnerRight">
 		<ul>
-			<li>Invoice #: <?php echo CHtml::encode($data->id); ?></li>
-			<li>Date: <?php echo CHtml::encode($data->invoiceDate); ?></li>
-			<li>Due date: <?php echo CHtml::encode($data->dueDate); ?></li>
+			<li>Invoice #: <span class="invoiceContent"><?php echo CHtml::encode($data->id); ?></span></li>
+			<li>Date: <span class="invoiceContent"><?php echo CHtml::encode($data->invoiceDate); ?></span></li>
+			<li>Due date: <span class="invoiceContent"><?php echo CHtml::encode($data->dueDate); ?></span></li>
 		</ul>
 	</div>
 </div>

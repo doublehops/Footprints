@@ -1,8 +1,59 @@
 @CHARSET "UTF-8";
 
-.view {
-	position: relative;
-	min-height: 125px;
+#header {
+	overflow: hidden;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #333;
+}
+
+#logo {
+	float: left;
+	margin-left: 27px;
+	margin-top: 27px;
+	font-size: 400%;
+}
+
+h1 {
+	text-align: center;
+	margin: 15px;
+}
+
+#businessInfo {
+	float: right;
+}
+
+#businessInfo ul {
+	list-style-type: none;
+	margin: 10px 15px 0 0;
+}
+
+#businessInfo ul li {
+	margin: 0;
+	font-size: 12px;
+	text-align: right;
+}
+
+.invoiceContainer {
+	display: block;
+	overflow: hidden;
+	border-bottom: 1px solid #333;
+	padding-bottom: 10px;
+}
+
+.invoiceContainer ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.invoiceInnerRight ul li {
+	text-align: right;
+}
+
+.invoiceInnerRight ul li span {
+	float: right;
+	width: 100px;
+	margin-right: 10px;
 }
 
 .invoiceInnerLeft {

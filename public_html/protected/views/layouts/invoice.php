@@ -24,19 +24,20 @@
 
 	<div id="header" class="header">
 		<div id="logo"><?php echo CHtml::encode( Yii::app()->userInfo->businessName ); ?></div>
-		<div>
+		<div id="businessInfo">
 			<ul>
-				<li>Doublehops</li>
 				<li>ABN: 50 482 990 306</li>
 				<li>6/8 William St</li>
 				<li>South Yarra</li>
 				<li>Vic, 3141</li>
 				<li>Phone: 0418 998 283</li>
+				<li>Web: www.doublehops.com </li>
 				<li>Email: damien@doublehops.com </li>
 			</ul>
 		</div>
 	</div><!-- header -->
 
+	<h1>Tax Invoice</h1>
 
 
 	<?php echo $content; ?>
