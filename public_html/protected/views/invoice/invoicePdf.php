@@ -58,7 +58,7 @@
 	$content = ob_get_contents();
 	ob_end_clean();
 
-
+die( $content );
 	$pdf = Yii::createComponent('application.extensions.tcpdf.tcpdf', 
 	                            'P', 'cm', 'A4', true, 'UTF-8');
 	$pdf->SetCreator(PDF_CREATOR);

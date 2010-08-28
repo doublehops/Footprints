@@ -23,6 +23,7 @@
 				$this->businessName = $business->businessName;
 				$this->gstEnabled = $business->gstEnabled;
 				$this->gstRate = $business->gstRate;
+				$this->AssetPath = $business->AssetPath;
 			}
 		}
 	}
