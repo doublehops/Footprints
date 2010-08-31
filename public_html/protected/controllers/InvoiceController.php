@@ -90,6 +90,8 @@ class InvoiceController extends Controller
 	{
 		$model = $this->loadModel();
 		
+		$this->layout = 'invoiceTables';
+		
 		$this->render('invoicePdf',array(
 			'data'=>$model,
 			'invoiceValues'=>$model->getInvoiceValues(),
