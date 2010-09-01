@@ -44,7 +44,7 @@ class JobType extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('jobName, jobRate, jobCode, active, lastUpdatedBy', 'required'),
+			array('jobName, jobRate, active, lastUpdatedBy', 'required'),
 			array('businessId, active, lastUpdatedBy', 'numerical', 'integerOnly'=>true),
 			array('jobName', 'length', 'max'=>100),
 			array('jobRate', 'length', 'max'=>9),
