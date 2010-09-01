@@ -137,7 +137,7 @@ class ExpenseController extends Controller
 			array(
 				'criteria'=>array(
 				'with'=>array('creditor'),
-				'with'=>array('expense'),
+				'with'=>array('expenseType'),
 				'condition'=>'businessId='. Yii::app()->userInfo->business
 				),
 			)

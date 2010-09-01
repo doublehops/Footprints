@@ -70,7 +70,7 @@ class Expense extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 		'creditor'=>array(self::BELONGS_TO, 'Creditor', 'creditorId'),
-		'expense'=>array(self::BELONGS_TO, 'Expense', 'expenseType'),
+		'expenseType'=>array(self::BELONGS_TO, 'ExpenseType', 'expenseType'),
 		);
 	}
 
