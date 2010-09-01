@@ -11,7 +11,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'creditorId'); ?>
-		<?php echo $form->dropDownList($model,'creditorId', CHtml::listData(Creditor::model()->findAll(array('condition'=>'businessId=:businessId','params'=>array(':businessId'=>Yii::app()->userInfo->business))) , 'id', 'name') ); ?>
+		<?php echo $form->dropDownList($model,'creditorId', CHtml::listData(Creditor::model()->findAll(array('condition'=>'businessId=:businessId', 'order'=>'name','params'=>array(':businessId'=>Yii::app()->userInfo->business))) , 'id', 'name') ); ?>
 		<?php echo $form->error($model,'creditorId'); ?>
 	</div>
 
@@ -29,7 +29,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'expenseType'); ?>
-		<?php echo $form->dropDownList($model,'expenseType', CHtml::listData(ExpenseType::model()->findAll() , 'id', 'expenseName') ); ?>
+		<?php echo $form->dropDownList($model,'expenseType', CHtml::listData(ExpenseType::model()->findAll(array('order'=>'expenseName')) , 'id', 'expenseName') ); ?>
 		<?php echo $form->error($model,'expenseType'); ?>
 	</div>
 
