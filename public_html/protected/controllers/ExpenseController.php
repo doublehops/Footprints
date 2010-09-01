@@ -133,7 +133,16 @@ class ExpenseController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Expense');
+		$dataProvider=new CActiveDataProvider('Expense',
+			array(
+				'criteria'=>array(
+				'with'=>array('creditor'),
+				'with'=>array('expense'),
+				'condition'=>'businessId='. Yii::app()->userInfo->business
+				),
+			)
+		);
+		
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
