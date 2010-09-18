@@ -76,10 +76,6 @@ class ExpenseController extends Controller
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
-		else
-		{
-			$model->expensePaidDate=date('Y-m-d');
-		}
 
 		$this->render('create',array(
 			'model'=>$model,
