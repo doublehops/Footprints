@@ -54,7 +54,7 @@ class Expense extends CActiveRecord
 			array('expenseTotal', 'numerical', 'integerOnly'=>false),
 			array('expenseName', 'length', 'max'=>100),
 			array('expenseTotal', 'length', 'max'=>9),
-			array('expenseDescription, created, lastModified', 'safe'),
+			array('expenseDescription, expensePaidDate', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, creditorId, expenseName, expenseDescription, expenseTotal, expensePaid, expensePaidDate, created, lastModified, lastUpdatedBy, active', 'safe', 'on'=>'search'),

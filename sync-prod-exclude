@@ -1,3 +1,5 @@
 sync-prod
 sync-prod-exclude
 .svn
+assets
+runtime
