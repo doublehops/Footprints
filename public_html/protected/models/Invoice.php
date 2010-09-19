@@ -170,11 +170,7 @@ class Invoice extends CActiveRecord
 		$criteria->alias = 'Invoice';
 		$criteria->select = 'Invoice.*';
 		$criteria->join='LEFT JOIN Client ON Client.id=Invoice.clientId';
-		$criteria->condition='Client.businessId='. Yii::app()->userInfo->business;
-			return new CActiveDataProvider('Invoice', array(
-			'criteria'=>$criteria,
-		));
-		
+
 		$criteria->compare('id',$this->id);
 
 		$criteria->compare('clientId',$this->clientId);
@@ -198,8 +194,11 @@ class Invoice extends CActiveRecord
 		$criteria->compare('lastModified',$this->lastModified,true);
 
 		$criteria->compare('lastUpdatedBy',$this->lastUpdatedBy);
+		
+		$criteria->defaultOrder = "Invoice.id DESC";
 
-		return new CActiveDataProvider(get_class($this), array(
+		$criteria->condition='Client.businessId='. Yii::app()->userInfo->business;
+			return new CActiveDataProvider('Invoice', array(
 			'criteria'=>$criteria,
 		));
 	}
