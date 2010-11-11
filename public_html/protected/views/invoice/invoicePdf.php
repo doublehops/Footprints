@@ -39,8 +39,8 @@
 	<?php endforeach; ?>
 	
 	<?php if( Yii::app()->userInfo->gstEnabled == 1 ) : ?>
-	<tr><td>&nbsp;</td><td>&nbsp;</td><td class="alignRight">Total: (Ex GST)</td><td class="alignRight">$<?php echo number_format( $invoiceValues[0]['TotalEx'], 2 ) ?></td></tr>
-	<tr><td>&nbsp;</td><td>&nbsp;</td><td class="alignRight">GST: </td><td class="alignRight">$<?php echo number_format( $invoiceValues[0]['GSTTotal'], 2 ) ?></td></tr>
+	<tr><td>&nbsp;</td><td>&nbsp;</td><td class="alignRight">Total: (Ex GST)</td><td class="alignRight">$<?php echo number_format( $invoiceValues['TotalEx'], 2 ) ?></td></tr>
+	<tr><td>&nbsp;</td><td>&nbsp;</td><td class="alignRight">GST: </td><td class="alignRight">$<?php echo number_format( $invoiceValues['GSTTotal'], 2 ) ?></td></tr>
 	<?php endif; ?>
 
 	<tr><td>&nbsp;</td><td>&nbsp;</td><td class="finalTotal">Total:</td><td class="finalTotal">$<?php echo number_format( $data->invoiceTotal, 2 ) ?></td></tr>

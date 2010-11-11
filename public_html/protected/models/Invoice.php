@@ -104,6 +104,8 @@ class Invoice extends CActiveRecord
 	protected function beforeValidate()
 	{
 		$this->lastUpdatedBy=Yii::app()->user->id;
+		$invoiceTotals=$this->getInvoiceValues();
+		$this->invoiceTotal=$invoiceTotals['invoiceTotal'];
 		
 		if($this->isNewRecord)
 		{
@@ -119,6 +121,7 @@ class Invoice extends CActiveRecord
 	public function getInvoiceValues()
 	{
 		$invoiceArray = array();
+		$this->invoiceTotal = 0;
 		
 		foreach( $this->job as $job )
 		{
@@ -137,7 +140,7 @@ class Invoice extends CActiveRecord
 			$invoiceArray['GSTTotal'] = $this->invoiceTotal - ( $this->invoiceTotal / ( 1 + ( Yii::app()->userInfo->gstRate / 100 ) ) );
 			$invoiceArray['TotalEx'] = $this->invoiceTotal - $invoiceArray['GSTTotal'];
 		}
-		return array( $invoiceArray );
+		return $invoiceArray;
 	}
 	
     public function getStatusOptions()
