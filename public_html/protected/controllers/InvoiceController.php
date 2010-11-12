@@ -179,6 +179,7 @@ class InvoiceController extends Controller
 				'with'=>array('client'),
 				'condition'=>'businessId='. Yii::app()->userInfo->business
 				),
+				'pagination'=>array('pageSize'=>20),
 			)
 		);
 		

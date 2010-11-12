@@ -203,6 +203,8 @@ class Invoice extends CActiveRecord
 		$criteria->condition='Client.businessId='. Yii::app()->userInfo->business;
 			return new CActiveDataProvider('Invoice', array(
 			'criteria'=>$criteria,
+			'pagination'=>array('pageSize'=>20),
+			
 		));
 	}
 }
