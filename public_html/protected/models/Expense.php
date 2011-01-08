@@ -162,8 +162,8 @@ class Expense extends CActiveRecord
 
 		$criteria->compare('active',$this->active);
 		
-		$criteria->defaultOrder = "id DESC";
-
+		$criteria->order = "id DESC";
+		
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria'=>$criteria,
 		));

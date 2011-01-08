@@ -198,7 +198,7 @@ class Invoice extends CActiveRecord
 
 		$criteria->compare('lastUpdatedBy',$this->lastUpdatedBy);
 		
-		$criteria->defaultOrder = "Invoice.id DESC";
+		$criteria->order = "Invoice.id DESC";
 
 		$criteria->condition='Client.businessId='. Yii::app()->userInfo->business;
 			return new CActiveDataProvider('Invoice', array(
