@@ -12,6 +12,8 @@ class JobController extends Controller
 	 * @var CActiveRecord the currently loaded data model instance.
 	 */
 	private $_model;
+	
+	private $_invoice;
 
 	/**
 	 * @return array action filters
@@ -20,9 +22,37 @@ class JobController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
+			'invoiceContext + create',
 		);
 	}
+	
+	protected function loadInvoice($invoice_id)
+	{
+		if($this->_invoice===null)
+		{
+			$this->_invoice=Invoice::model()->findByPk($invoice_id);
+			if($this->_invoice===null)
+			{
+				throw new CHttpException(404,'The requested Invoice does not exist,');
+			}
+		}
+		
+		return $this->_invoice;
+	}
 
+	public function filterInvoiceContext($filterChain)
+	{
+		$invoice = null;
+		if(isset($_REQUEST['iid']))
+		{
+			$invoice = $_REQUEST['iid'];
+		}
+		
+		$this->loadInvoice($invoice);
+		
+		$filterChain->run();
+	}
+	
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -66,6 +96,7 @@ class JobController extends Controller
 	public function actionCreate()
 	{
 		$model=new Job;
+		$model->invoiceId = $this->_invoice->id;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);

@@ -10,9 +10,7 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'invoiceId'); ?>
-		<?php echo $form->dropDownList($model,'invoiceId', CHtml::listData(Invoice::model()->findAll() , 'id', 'id'), array('empty'=>array(0=>'None')) ); ?>
-		<?php echo $form->error($model,'invoiceId'); ?>
+		<?php echo $form->hiddenField($model,'invoiceId'); ?>
 	</div>
 
 	<div class="row">

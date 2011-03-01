@@ -198,4 +198,10 @@ active tinyint(4) NOT NULL DEFAULT '1',
 primary key(`id`)
 );
 
-
+CREATE TABLE BasPeriod (
+id int(32) NOT NULL AUTO_INCREMENT,
+title varchar(50) NOT NULL,
+periodStart datetime,
+periodEnd datetime,
+primary key(`id`)
+);
