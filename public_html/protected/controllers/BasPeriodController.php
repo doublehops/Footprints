@@ -1,6 +1,6 @@
 <?php
 
-class ExpenseController extends Controller
+class BasPeriodController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to 'column2', meaning
@@ -40,7 +40,7 @@ class ExpenseController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','calculateExpenses'),
+				'actions'=>array('admin','delete'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -65,14 +65,14 @@ class ExpenseController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Expense;
+		$model=new BasPeriod;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Expense']))
+		if(isset($_POST['BasPeriod']))
 		{
-			$model->attributes=$_POST['Expense'];
+			$model->attributes=$_POST['BasPeriod'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -93,9 +93,9 @@ class ExpenseController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Expense']))
+		if(isset($_POST['BasPeriod']))
 		{
-			$model->attributes=$_POST['Expense'];
+			$model->attributes=$_POST['BasPeriod'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -103,31 +103,6 @@ class ExpenseController extends Controller
 		$this->render('update',array(
 			'model'=>$model,
 		));
-	}
-	
-	public function actionCalculateExpenses()
-	{
-		$expenseArray = array();
-		
-		$expenseTypes=ExpenseType::model()->findAll();
-
-		foreach($expenseTypes as $expenseType)
-		{
-			$expenseArray[$expenseType->id]['name'] = $expenseType->expenseName;
-			$expenseArray[$expenseType->id]['total'] = 0;
-		}
-		
-		$expenses = Expense::model()->findAll();
-		
-		foreach($expenses as $expense)
-		{
-			$expenseArray[$expense->expenseType]['total'] += $expense->expenseTotal;
-		}
-
-		$this->render('calculate',array(
-			'expenseArray'=>$expenseArray,
-		));
-	
 	}
 
 	/**
@@ -154,16 +129,7 @@ class ExpenseController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Expense',
-			array(
-				'criteria'=>array(
-				'with'=>array('creditor'),
-				'with'=>array('expenseType'),
-				'condition'=>'businessId='. Yii::app()->userInfo->business
-				),
-			)
-		);
-		
+		$dataProvider=new CActiveDataProvider('BasPeriod');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -174,9 +140,9 @@ class ExpenseController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Expense('search');
-		if(isset($_GET['Expense']))
-			$model->attributes=$_GET['Expense'];
+		$model=new BasPeriod('search');
+		if(isset($_GET['BasPeriod']))
+			$model->attributes=$_GET['BasPeriod'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -192,7 +158,7 @@ class ExpenseController extends Controller
 		if($this->_model===null)
 		{
 			if(isset($_GET['id']))
-				$this->_model=Expense::model()->findbyPk($_GET['id']);
+				$this->_model=BasPeriod::model()->findbyPk($_GET['id']);
 			if($this->_model===null)
 				throw new CHttpException(404,'The requested page does not exist.');
 		}
@@ -205,7 +171,7 @@ class ExpenseController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='expense-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='bas-period-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
