@@ -107,24 +107,9 @@ class ExpenseController extends Controller
 	
 	public function actionCalculateExpenses()
 	{
-		$expenseArray = array();
-		
-		$expenseTypes=ExpenseType::model()->findAll();
+		$expenseArray = Expense::getExpenseTotals();
 
-		foreach($expenseTypes as $expenseType)
-		{
-			$expenseArray[$expenseType->id]['name'] = $expenseType->expenseName;
-			$expenseArray[$expenseType->id]['total'] = 0;
-		}
-		
-		$expenses = Expense::model()->findAll();
-		
-		foreach($expenses as $expense)
-		{
-			$expenseArray[$expense->expenseType]['total'] += $expense->expenseTotal;
-		}
-
-		$this->render('calculate',array(
+		$this->render('expenseTotals',array(
 			'expenseArray'=>$expenseArray,
 		));
 	

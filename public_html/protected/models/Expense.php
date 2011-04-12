@@ -112,6 +112,31 @@ class Expense extends CActiveRecord
 		}
 		return true;
 	}
+	
+	public function getExpenseTotals()
+	{
+		$expenseArray = array();
+		
+		$expenseTypes=ExpenseType::model()->findAll();
+
+		foreach($expenseTypes as $expenseType)
+		{
+			$expenseArray[$expenseType->id]['name'] = $expenseType->expenseName;
+			$expenseArray[$expenseType->id]['total'] = 0;
+		}
+
+		$criteria = new CDbCriteria();
+
+		$criteria->condition = 'expensePaid = 1 AND active = 1';
+		$expenses = Expense::model()->findAll($criteria);
+		
+		foreach($expenses as $expense)
+		{
+			$expenseArray[$expense->expenseType]['total'] += $expense->expenseTotal;
+		}
+		
+		return $expenseArray;
+	}
 			
     public function getStatusOptions()
     {
