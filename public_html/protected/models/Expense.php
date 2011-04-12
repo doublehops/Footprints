@@ -128,6 +128,14 @@ class Expense extends CActiveRecord
 		$criteria = new CDbCriteria();
 
 		$criteria->condition = 'expensePaid = 1 AND active = 1';
+			
+		if(isset($_POST['period']))
+		{
+			$period = BasPeriod::Model()->findByPk($_POST['period']);
+			
+			$criteria->condition .= ' AND expensePaidDate >= \''. $period->periodStart .'\''.
+									' AND expensePaidDate <= \''. $period->periodEnd .'\'';
+		}
 		$expenses = Expense::model()->findAll($criteria);
 		
 		foreach($expenses as $expense)

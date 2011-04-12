@@ -41,6 +41,8 @@
 					array('label'=>'Job Types', 'url'=>array('/jobType/admin')),
 					array('label'=>'Expense Types', 'url'=>array('/expenseType/admin')),
 					array('label'=>'Expenses', 'url'=>array('/expense/admin')),
+					array('label'=>'Expense Totals', 'url'=>array('/expense/calculateExpenses')),
+					array('label'=>'BAS periods', 'url'=>array('/basPeriod/admin')),
 				)),
 //				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 //				array('label'=>'Contact', 'url'=>array('/site/contact')),
