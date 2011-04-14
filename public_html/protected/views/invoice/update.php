@@ -10,6 +10,7 @@ $this->menu=array(
 	array('label'=>'Create Invoice', 'url'=>array('create')),
 	array('label'=>'View Invoice', 'url'=>array('view', 'id'=>$model->id)),
 	array('label'=>'Manage Invoice', 'url'=>array('admin')),
+	array('label'=>'Create Payment', 'url'=>array('invoicePayment/create', 'iid'=>$model->id)),
 );
 ?>
 
