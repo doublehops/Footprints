@@ -9,7 +9,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('amount')); ?>:</b>
-	<?php echo CHtml::encode($data->amount); ?>
+	$<?php echo number_format(CHtml::encode($data->amount), 2); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('paymentMethod')); ?>:</b>

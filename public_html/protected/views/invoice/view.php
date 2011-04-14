@@ -35,3 +35,11 @@ $this->menu=array(
 		'lastUpdatedBy',
 	),
 )); ?>
+
+<br />
+<h1>Invoice Payments</h1>
+
+<?php $this->widget('zii.widgets.CListView', array(
+			'dataProvider'=>$paymentDataProvider,
+			'itemView'=>'/invoicePayment/_view',
+)); ?>

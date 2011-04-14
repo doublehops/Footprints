@@ -59,8 +59,19 @@ class InvoiceController extends Controller
 	 */
 	public function actionView()
 	{
+		$paymentDataProvider= new CActiveDataProvider('InvoicePayment', array(
+										'criteria'=>array(
+											'condition'=>':invoiceId',
+											'params'=>array(':invoiceId'=>$this->loadModel()->id),
+											),
+											'pagination'=>array(
+												'pageSize'=>3,
+											),
+		));
+		
 		$this->render('view',array(
 			'model'=>$this->loadModel(),
+			'paymentDataProvider'=>$paymentDataProvider,
 		));
 	}
 	
