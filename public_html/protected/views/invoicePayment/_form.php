@@ -10,12 +10,6 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'invoiceId'); ?>
-		<?php echo $form->dropDownList($model,'invoiceId', CHtml::listData(Invoice::model()->findAll() , 'id', 'id') ); ?>
-		<?php echo $form->error($model,'invoiceId'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'amount'); ?>
 		<?php echo $form->textField($model,'amount',array('size'=>9,'maxlength'=>9)); ?>
 		<?php echo $form->error($model,'amount'); ?>

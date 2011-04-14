@@ -12,6 +12,7 @@ $this->menu=array(
 	array('label'=>'Manage Invoice', 'url'=>array('admin')),
 	array('label'=>'Extended View', 'url'=>array('invoiceView', 'id'=>$model->id)),
 	array('label'=>'Create Job', 'url'=>array('job/create', 'iid'=>$model->id)),
+	array('label'=>'Create Payment', 'url'=>array('invoicePayment/create', 'iid'=>$model->id)),
 );
 ?>
 

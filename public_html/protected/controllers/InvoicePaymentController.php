@@ -8,11 +8,27 @@ class InvoicePaymentController extends Controller
 	 */
 	public $layout='column2';
 
+	private $_invoice;
+	
 	/**
 	 * @var CActiveRecord the currently loaded data model instance.
 	 */
 	private $_model;
 
+	protected function loadInvoice($invoiceId)
+	{
+		if($this->_invoice == null)
+		{
+			$this->_invoice=Invoice::model()->findByPk($invoiceId);
+			if($this->_invoice===null)
+			{
+				throw new CHttpException(404, 'The requested invoice does not exist');
+			}
+		}
+		
+		return $this->_invoice;
+	}
+	
 	/**
 	 * @return array action filters
 	 */
@@ -20,6 +36,7 @@ class InvoicePaymentController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
+			'invoiceContext + create',
 		);
 	}
 
@@ -58,6 +75,20 @@ class InvoicePaymentController extends Controller
 			'model'=>$this->loadModel(),
 		));
 	}
+	
+	public function filterInvoiceContext($filterChain)
+	{
+		$invoiceId = null;
+		
+		if(isset($_REQUEST['iid']))
+		{
+			$invoiceId = $_GET['iid'];
+		}
+		
+		$this->loadInvoice($invoiceId);
+		
+		$filterChain->run();
+	}
 
 	/**
 	 * Creates a new model.
@@ -66,6 +97,8 @@ class InvoicePaymentController extends Controller
 	public function actionCreate()
 	{
 		$model=new InvoicePayment;
+		
+		$model->invoiceId = $this->_invoice->id;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
