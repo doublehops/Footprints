@@ -61,12 +61,12 @@ class InvoiceController extends Controller
 	{
 		$paymentDataProvider= new CActiveDataProvider('InvoicePayment', array(
 										'criteria'=>array(
-											'condition'=>':invoiceId',
+											'condition'=>'invoiceId=:invoiceId',
 											'params'=>array(':invoiceId'=>$this->loadModel()->id),
-											),
-											'pagination'=>array(
-												'pageSize'=>3,
-											),
+										),
+										'pagination'=>array(
+											'pageSize'=>3,
+										),
 		));
 		
 		$this->render('view',array(
