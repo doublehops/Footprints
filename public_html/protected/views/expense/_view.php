@@ -24,6 +24,10 @@
 	<?php echo CHtml::encode($data->expenseTotal); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('subjectGST')); ?>:</b>
+	<?php echo CHtml::encode($data->subjectGST); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('expensePaid')); ?>:</b>
 	<?php echo CHtml::encode($data->expensePaid); ?>
 	<br />

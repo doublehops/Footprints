@@ -24,6 +24,7 @@ $this->menu=array(
 		'expenseDescription',
 		'expenseType',
 		'expenseTotal',
+		'subjectGST',
 		'expensePaid',
 		'expensePaidDate',
 		'created',

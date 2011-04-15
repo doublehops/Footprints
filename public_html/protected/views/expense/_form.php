@@ -40,6 +40,12 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'subjectGST'); ?>
+		<?php echo $form->checkbox($model,'subjectGST'); ?>
+		<?php echo $form->error($model,'subjectGST'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'expensePaid'); ?>
 		<?php echo $form->dropDownList($model,'expensePaid', $model->getStatusOptions()); ?>
 		<?php echo $form->error($model,'expensePaid'); ?>

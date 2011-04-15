@@ -18,6 +18,7 @@ class Expense extends CActiveRecord
 	 * @var string $expenseTotal
 	 * @var integer $expensePaid
 	 * @var string $expensePaidDate
+	 * @var integer $subjectGST
 	 * @var string $created
 	 * @var string $lastModified
 	 * @var integer $lastUpdatedBy
@@ -50,7 +51,7 @@ class Expense extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('creditorId, expenseName, expenseType, expenseTotal', 'required'),
-			array('creditorId, expenseType, expensePaid, lastUpdatedBy, active', 'numerical', 'integerOnly'=>true),
+			array('creditorId, expenseType, expensePaid, subjectGST, lastUpdatedBy, active', 'numerical', 'integerOnly'=>true),
 			array('expenseTotal', 'numerical', 'integerOnly'=>false),
 			array('expenseName', 'length', 'max'=>100),
 			array('expenseTotal', 'length', 'max'=>9),
@@ -88,6 +89,7 @@ class Expense extends CActiveRecord
 			'expenseTotal' => 'Expense Total',
 			'expensePaid' => 'Expense Paid',
 			'expensePaidDate' => 'Expense Paid Date',
+			'subjectGST' => 'Subjected to GST',
 			'created' => 'Created',
 			'lastModified' => 'Last Modified',
 			'lastUpdatedBy' => 'Last Updated By',
