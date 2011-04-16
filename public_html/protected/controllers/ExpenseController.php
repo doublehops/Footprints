@@ -107,10 +107,11 @@ class ExpenseController extends Controller
 	
 	public function actionCalculateExpenses()
 	{
-		$expenseArray = Expense::getExpenseTotals();
+		$expenseResults = Expense::getExpenseTotals();
 
 		$this->render('expenseTotals',array(
-			'expenseArray'=>$expenseArray,
+			'expenseArray'=>$expenseResults['expenseArray'],
+			'expenseTotals'=>$expenseResults['expenseTotals'],
 		));
 	
 	}

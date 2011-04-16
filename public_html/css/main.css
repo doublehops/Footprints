@@ -270,3 +270,19 @@ div.search-form
 {
 	background: #80CFFF;
 }
+
+.totalsTable th, .totalsTable td {
+	text-align: right;
+}
+
+.totalsTable .left {
+	text-align: left;
+}
+
+.totals {
+	background-color: #ddd;
+}
+
+.totals td {
+	font-weight: bold;
+}

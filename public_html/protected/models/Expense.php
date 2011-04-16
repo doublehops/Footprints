@@ -119,12 +119,17 @@ class Expense extends CActiveRecord
 	{
 		$expenseArray = array();
 		
+		$expenseTotals['nonGSTTotal'] = 0;
+		$expenseTotals['subjectGSTTotal'] = 0;
+		
 		$expenseTypes=ExpenseType::model()->findAll();
 
 		foreach($expenseTypes as $expenseType)
 		{
 			$expenseArray[$expenseType->id]['name'] = $expenseType->expenseName;
 			$expenseArray[$expenseType->id]['total'] = 0;
+			$expenseArray[$expenseType->id]['subjectGST'] = 0;
+			$expenseArray[$expenseType->id]['nonGST'] = 0;
 		}
 
 		$criteria = new CDbCriteria();
@@ -143,9 +148,23 @@ class Expense extends CActiveRecord
 		foreach($expenses as $expense)
 		{
 			$expenseArray[$expense->expenseType]['total'] += $expense->expenseTotal;
+			
+			// Split Expense up into non GST and subject to GST
+			if($expense->subjectGST == 1)
+			{
+				$expenseArray[$expense->expenseType]['subjectGST'] += $expense->expenseTotal;
+				$expenseTotals['subjectGSTTotal'] += $expense->expenseTotal;
+			}
+			else
+			{
+				$expenseArray[$expense->expenseType]['nonGST'] += $expense->expenseTotal;
+				$expenseTotals['nonGSTTotal'] += $expense->expenseTotal;
+			}
 		}
 		
-		return $expenseArray;
+		$expenseTotals['expenseTotal'] = $expenseTotals['subjectGSTTotal'] + $expenseTotals['nonGSTTotal'];
+		
+		return array('expenseArray'=>$expenseArray, 'expenseTotals'=>$expenseTotals);
 	}
 			
     public function getStatusOptions()

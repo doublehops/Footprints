@@ -13,10 +13,20 @@ $this->menu=array(
 <h1>Calculate Expenses</h1>
 
 <?php $this->widget('BasPeriodSelect'); ?>
-<dl>
+<table class="totalsTable">
+	<tr><th class="left">Expense name</th><th>Non-GST</th><th>Subject to GST</th><th>Total</th></tr>
 <?php foreach( $expenseArray as $expense ) : ?>
-	<dt><?php echo CHtml::encode($expense['name']) ?></dt>
-	<dl>$<?php echo CHtml::encode( number_format( $expense['total'], 2 ) ) ?></dl>
-
+	<tr>
+		<td class="left"><?php echo CHtml::encode($expense['name']) ?></td>
+		<td>$<?php echo CHtml::encode( number_format( $expense['nonGST'], 2 ) ) ?></td>
+		<td>$<?php echo CHtml::encode( number_format( $expense['subjectGST'], 2 ) ) ?></td>
+		<td>$<?php echo CHtml::encode( number_format( $expense['total'], 2 ) ) ?></td>
+	</tr>
 <?php endforeach ?>
-</dl>
+	<tr class="totals">
+		<td class="left">Totals</td>
+		<td>$<?php echo CHtml::encode( number_format( $expenseTotals['nonGSTTotal'], 2 ) ) ?></td>
+		<td>$<?php echo CHtml::encode( number_format( $expenseTotals['subjectGSTTotal'], 2 ) ) ?></td>
+		<td>$<?php echo CHtml::encode( number_format( $expenseTotals['expenseTotal'], 2 ) ) ?></td>
+	</tr>
+</table>
