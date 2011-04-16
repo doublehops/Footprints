@@ -28,7 +28,10 @@ $this->menu=array(
 		'invoiceTotal',
 		'clientNotes',
 		'invoiceNotes',
-		'status',
+		array(
+			'name'=>'status',
+			'value'=>CHtml::encode($model->getStatusText())
+		),
 		'active',
 		'created',
 		'lastModified',
