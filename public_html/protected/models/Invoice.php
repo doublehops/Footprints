@@ -135,9 +135,11 @@ class Invoice extends CActiveRecord
 		
 		if( Yii::app()->userInfo->gstEnabled == 1 )
 		{
+			$invoiceArray['invoiceTotalPre'] = $this->invoiceTotal;
+			$invoiceArray['invoiceTotal'] = $invoiceArray['invoiceTotal'] * ( 1 + ( Yii::app()->userInfo->gstRate / 100 ) );
 			$invoiceArray['Total'] = $this->invoiceTotal;
 			$invoiceArray['GSTRate'] = Yii::app()->userInfo->gstRate;
-			$invoiceArray['GSTTotal'] = $this->invoiceTotal - ( $this->invoiceTotal / ( 1 + ( Yii::app()->userInfo->gstRate / 100 ) ) );
+			$invoiceArray['GSTTotal'] = $invoiceArray['invoiceTotal'] - $this->invoiceTotal;
 			$invoiceArray['TotalEx'] = $this->invoiceTotal - $invoiceArray['GSTTotal'];
 		}
 		return $invoiceArray;
