@@ -1,1 +1,0 @@
-rsync -t -r --exclude-from=sync-prod-exclude --verbose --rsh='ssh -p32200' ./public_html/* damienb@67.23.2.206:/var/www/footprints.doublehops.com/public_html
