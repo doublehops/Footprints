@@ -6,7 +6,7 @@ switch( $_SERVER['SERVER_NAME'] )
 {
 	case 'footprints' :
 
-		$yii=dirname(__FILE__).'/../../yii_framework/yii-1.1.2.r2086/framework/yii.php';
+		$yii=dirname(__FILE__).'/../../yii_framework/yii-1.1.10.r3566/framework/yii.php';
 		$config=dirname(__FILE__).'/protected/config/main.php';
 		
 		// remove the following lines when in production mode
