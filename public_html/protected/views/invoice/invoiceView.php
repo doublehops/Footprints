@@ -1,5 +1,12 @@
 <?php
-	$this->menu=array(
+$this->menu=array(
+	array('label'=>'List Invoice', 'url'=>array('index')),
+	array('label'=>'Create Invoice', 'url'=>array('create')),
+	array('label'=>'Update Invoice', 'url'=>array('update', 'id'=>$data->id)),
+	array('label'=>'Delete Invoice', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$data->id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Manage Invoice', 'url'=>array('admin')),
+	array('label'=>'Create Job', 'url'=>array('job/create', 'iid'=>$data->id)),
+	array('label'=>'Create Payment', 'url'=>array('invoicePayment/create', 'iid'=>$data->id)),
 	array('label'=>'Print', 'url'=>array('invoicePrint', 'id'=>$data->id)),
 	array('label'=>'Email', 'url'=>array('email', 'id'=>$data->id)),
 	array('label'=>'Email as PDF', 'url'=>array('invoicePdf', 'id'=>$data->id)),
@@ -53,3 +60,11 @@
 	<tr><td>&nbsp;</td><td>&nbsp;</td><td><strong>Total:</strong></td><td><strong>$<?php echo number_format( $invoiceValues['invoiceTotal'], 2 ) ?></strong></td></tr>
 
 </table>
+
+<br />
+<h1>Invoice Payments</h1>
+
+<?php $this->widget('zii.widgets.CListView', array(
+			'dataProvider'=>$paymentDataProvider,
+			'itemView'=>'/invoicePayment/_view',
+)); ?>

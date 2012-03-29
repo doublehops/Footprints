@@ -69,22 +69,15 @@ class InvoiceController extends Controller
 										),
 		));
 		
-		$this->render('view',array(
-			'model'=>$this->loadModel(),
+		$model = $this->loadModel();
+
+		$this->render('invoiceView',array(
+			'data'=>$model,
+			'invoiceValues'=>$model->getInvoiceValues(),
 			'paymentDataProvider'=>$paymentDataProvider,
 		));
 	}
 	
-	public function actionInvoiceView()
-	{
-		$model = $this->loadModel();
-		
-		$this->render('invoiceView',array(
-			'data'=>$model,
-			'invoiceValues'=>$model->getInvoiceValues(),
-		));
-	}
-
 	public function actionInvoicePrint()
 	{
 		$model = $this->loadModel();
