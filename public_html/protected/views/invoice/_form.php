@@ -64,3 +64,20 @@
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+
+<?php Yii::import('application.widgets.CJuiDateTimePicker.CJuiDateTimePicker');
+    $this->widget('CJuiDateTimePicker',array(
+        'model'=>$model, //Model object
+        'attribute'=>'invoiceDate', //attribute name
+        'mode'=>'date', //use "time","date" or "datetime" (default)
+        'options'=>array('dateFormat'=>'yy-mm-dd'), // jquery plugin options
+        'language'=>'',
+    ));
+    $this->widget('CJuiDateTimePicker',array(
+        'model'=>$model, //Model object
+        'attribute'=>'dueDate', //attribute name
+        'mode'=>'date', //use "time","date" or "datetime" (default)
+        'options'=>array('dateFormat'=>'yy-mm-dd'), // jquery plugin options
+        'language'=>'',
+    ));
+?>
