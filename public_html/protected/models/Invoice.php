@@ -56,7 +56,8 @@ class Invoice extends CActiveRecord
 			array('clientId', 'required'),
 			array('clientId, status, active, lastUpdatedBy', 'numerical', 'integerOnly'=>true),
 			array('invoiceTotal', 'length', 'max'=>9),
-			array('invoiceDate, dueDate, clientNotes, invoiceNotes', 'safe'),
+			array('invoiceDate,dueDate','date','format'=>'yyyy-mm-dd'),
+			array('clientNotes, invoiceNotes', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, clientId, invoiceDate, dueDate, invoiceTotal, clientNotes, invoiceNotes, status, active, created, lastModified, lastUpdatedBy', 'safe', 'on'=>'search'),
