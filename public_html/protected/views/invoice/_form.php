@@ -21,15 +21,30 @@
 		<?php echo $form->error($model,'clientId'); ?>
 	</div>
 
+<?php Yii::import('application.widgets.CJuiDateTimePicker.CJuiDateTimePicker'); ?>
 	<div class="row">
 		<?php echo $form->labelEx($model,'invoiceDate'); ?>
-		<?php echo $form->textField($model,'invoiceDate'); ?>
+		<?php 
+            $this->widget('CJuiDateTimePicker',array(
+                'model'=>$model, //Model object
+                'attribute'=>'invoiceDate', //attribute name
+                'mode'=>'date', //use "time","date" or "datetime" (default)
+                'options'=>array('dateFormat'=>'yy-mm-dd'), // jquery plugin options
+                'language'=>'',
+            )); ?>
 		<?php echo $form->error($model,'invoiceDate'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'dueDate'); ?>
-		<?php echo $form->textField($model,'dueDate'); ?>
+		<?php 
+            $this->widget('CJuiDateTimePicker',array(
+                'model'=>$model, //Model object
+                'attribute'=>'dueDate', //attribute name
+                'mode'=>'date', //use "time","date" or "datetime" (default)
+                'options'=>array('dateFormat'=>'yy-mm-dd'), // jquery plugin options
+                'language'=>'',
+            )); ?>
 		<?php echo $form->error($model,'dueDate'); ?>
 	</div>
 
@@ -65,19 +80,3 @@
 
 </div><!-- form -->
 
-<?php Yii::import('application.widgets.CJuiDateTimePicker.CJuiDateTimePicker');
-    $this->widget('CJuiDateTimePicker',array(
-        'model'=>$model, //Model object
-        'attribute'=>'invoiceDate', //attribute name
-        'mode'=>'date', //use "time","date" or "datetime" (default)
-        'options'=>array('dateFormat'=>'yy-mm-dd'), // jquery plugin options
-        'language'=>'',
-    ));
-    $this->widget('CJuiDateTimePicker',array(
-        'model'=>$model, //Model object
-        'attribute'=>'dueDate', //attribute name
-        'mode'=>'date', //use "time","date" or "datetime" (default)
-        'options'=>array('dateFormat'=>'yy-mm-dd'), // jquery plugin options
-        'language'=>'',
-    ));
-?>
