@@ -175,10 +175,11 @@ class Expense extends CActiveRecord
         );
     }
  
-    public function getStatusText()
+    public function getStatusText($expensePaid)
     {
-        $options=$this->statusOptions;
-        return isset($options[$this->status]) ? $options[$this->status] : "unknown ({$this->status})";
+        $options=self::getStatusOptions();
+
+        return $options[$expensePaid];
     }
 
 	/**
