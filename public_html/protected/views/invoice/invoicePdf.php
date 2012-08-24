@@ -1,8 +1,3 @@
-<?php
-
-	ob_start();
-	
-?>
 	
 <div class="invoiceContainer">
 	<table>
@@ -46,28 +41,3 @@
 	<tr><td>&nbsp;</td><td>&nbsp;</td><td class="finalTotal">Total:</td><td class="finalTotal">$<?php echo number_format( $data->invoiceTotal, 2 ) ?></td></tr>
 
 </table>
-
-	
-	<?php 
-
-	$content = ob_get_contents();
-	ob_end_clean();
-
-	$pdf = Yii::createComponent('application.extensions.tcpdf.tcpdf', 
-	                            'P', 'cm', 'A4', true, 'UTF-8');
-	$pdf->SetCreator(PDF_CREATOR);
-	$pdf->SetAuthor("Doublehops");
-	$pdf->SetTitle("Doublehops Invoice #". $data->id);
-	$pdf->SetSubject("Invoice");
-	$pdf->SetKeywords("TCPDF, PDF, example, test, guide");
-	$pdf->setPrintHeader(false);
-	$pdf->setPrintFooter(false);
-	$pdf->AliasNbPages();
-	$pdf->AddPage();
-	$pdf->SetFont("times", "BI", 20);
-//	$pdf->Cell(0,10,$content,1,1,'C');
-	$pdf->writeHTML($content, true, false, false, false, '');
-	
-	$pdf->Output("Doublehops Invoice #". $data->id .'.pdf', "I");
-	
-//	echo $content;

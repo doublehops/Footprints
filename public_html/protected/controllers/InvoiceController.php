@@ -94,12 +94,17 @@ class InvoiceController extends Controller
 	{
 		$model = $this->loadModel();
 		
+	/*	
 		$this->layout = 'invoiceTables';
-		
 		$this->render('invoicePdf',array(
 			'data'=>$model,
 			'invoiceValues'=>$model->getInvoiceValues(),
 		));
+		*/
+        $html2pdf = Yii::app()->ePdf->HTML2PDF();
+        $html2pdf->WriteHTML($this->renderPartial('invoicePdf', array('data'=>$model,'invoiceValues'=>$model->getInvoiceValues()), true));
+        //$html2pdf->WriteHTML('<h1>Working?</h1>');
+        $html2pdf->Output();
 	}
 
 	/**
