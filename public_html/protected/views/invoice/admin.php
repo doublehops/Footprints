@@ -47,7 +47,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'invoiceDate',
 		'dueDate',
 		'invoiceTotal',
-		'status',
+		array('name'=>'status', 'value'=>'Invoice::getStatusText($data["status"])'),
 		/*
 		'invoiceNotes',
 		'status',

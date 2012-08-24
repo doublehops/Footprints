@@ -155,10 +155,11 @@ class Invoice extends CActiveRecord
         );
     }
  
-    public function getStatusText()
+    public function getStatusText($status)
     {
-        $options=$this->statusOptions;
-        return isset($options[$this->status]) ? $options[$this->status] : "unknown ({$this->status})";
+        $options=self::getStatusOptions();
+
+        return $options[$status];
     }
 	
 	/**
