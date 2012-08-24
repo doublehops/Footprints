@@ -10,6 +10,8 @@ $this->menu=array(
 	array('label'=>'Update InvoicePayment', 'url'=>array('update', 'id'=>$model->id)),
 	array('label'=>'Delete InvoicePayment', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Manage InvoicePayment', 'url'=>array('admin')),
+	array('label'=>'Job Invoice', 'url'=>array('invoice/view', 'id'=>$model->invoice->id)),
+	array('label'=>'Update Invoice', 'url'=>array('invoice/update', 'id'=>$model->invoice->id)),
 );
 ?>
 
