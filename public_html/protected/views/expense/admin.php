@@ -46,9 +46,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'creditor.name',
 		'expenseName',
 		'expenseTotal',
-		'expensePaid',
-		array('name'=>'expensePaid', 'value'=>'Expense::getStatusText($data["expensePaid"])'),
-		'expensePaidDate',
+		array('header'=>'Paid', 'value'=>'Expense::getStatusText($data["expensePaid"])'),
 		/*
 		'expensePaidDate',
 		'created',
