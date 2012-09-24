@@ -13,6 +13,8 @@ class BasPeriod extends CActiveRecord
 	 * @var string $periodEnd
 	 */
 
+	 public $reportableOnly;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return BasPeriod the static model class
@@ -40,7 +42,7 @@ class BasPeriod extends CActiveRecord
 		return array(
 			array('title', 'required'),
 			array('title', 'length', 'max'=>50),
-			array('periodStart, periodEnd', 'safe'),
+			array('periodStart, periodEnd, reportableOnly', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, title, periodStart, periodEnd', 'safe', 'on'=>'search'),

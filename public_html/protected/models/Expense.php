@@ -115,14 +115,15 @@ class Expense extends CActiveRecord
 		return true;
 	}
 	
-	public function getExpenseTotals()
+	public function getExpenseTotals($reportableOnly)
 	{
 		$expenseArray = array();
 		
 		$expenseTotals['nonGSTTotal'] = 0;
 		$expenseTotals['subjectGSTTotal'] = 0;
 		
-		$expenseTypes=ExpenseType::model()->findAll();
+		$criteria = $reportableOnly == 1 ? array('condition'=>"reportableExpense='1'") : '';
+		$expenseTypes=ExpenseType::model()->findAll($criteria);
 
 		foreach($expenseTypes as $expenseType)
 		{
@@ -130,15 +131,20 @@ class Expense extends CActiveRecord
 			$expenseArray[$expenseType->id]['total'] = 0;
 			$expenseArray[$expenseType->id]['subjectGST'] = 0;
 			$expenseArray[$expenseType->id]['nonGST'] = 0;
+			$expenseArray[$expenseType->id]['class'] = $expenseType->reportableExpense == 1 ? '' : 'non-reportable';
 		}
 
 		$criteria = new CDbCriteria();
+        $criteria->alias = 'e';
+        $criteria->join = 'LEFT JOIN ExpenseType et on et.id=e.expenseType';
 
-		$criteria->condition = 'expensePaid = 1 AND active = 1';
-			
-		if(isset($_POST['period']))
+		$criteria->condition = 'e.expensePaid = 1 AND e.active = 1';
+		if($reportableOnly == 1)
+		    $criteria->condition .= ' AND et.reportableExpense = 1';
+
+		if(isset($_POST['BasPeriod']))
 		{
-			$period = BasPeriod::Model()->findByPk($_POST['period']);
+			$period = BasPeriod::Model()->findByPk($_POST['BasPeriod']['title']);
 			
 			$criteria->condition .= ' AND expensePaidDate >= \''. $period->periodStart .'\''.
 									' AND expensePaidDate <= \''. $period->periodEnd .'\'';

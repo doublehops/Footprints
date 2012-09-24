@@ -286,3 +286,7 @@ div.search-form
 .totals td {
 	font-weight: bold;
 }
+
+.non-reportable {
+	background-color: lightpink;
+}

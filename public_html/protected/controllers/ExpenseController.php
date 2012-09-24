@@ -107,11 +107,19 @@ class ExpenseController extends Controller
 	
 	public function actionCalculateExpenses()
 	{
-		$expenseResults = Expense::getExpenseTotals();
+	    $basPeriod = new BasPeriod;
+
+		if(isset($_REQUEST['BasPeriod']))
+		    $basPeriod->attributes=$_REQUEST['BasPeriod'];
+		else
+		    $basPeriod->reportableOnly=0;
+
+		$expenseResults = Expense::getExpenseTotals($basPeriod->reportableOnly);
 
 		$this->render('expenseTotals',array(
 			'expenseArray'=>$expenseResults['expenseArray'],
 			'expenseTotals'=>$expenseResults['expenseTotals'],
+			'basPeriod'=>$basPeriod,
 		));
 	
 	}

@@ -28,6 +28,12 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'reportableExpense'); ?>
+		<?php echo $form->checkbox($model,'reportableExpense'); ?>
+		<?php echo $form->error($model,'reportableExpense'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'active'); ?>
 		<?php echo $form->checkbox($model,'active'); ?>
 		<?php echo $form->error($model,'active'); ?>
