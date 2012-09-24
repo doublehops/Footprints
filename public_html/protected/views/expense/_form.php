@@ -46,6 +46,12 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'capitalPurchase'); ?>
+		<?php echo $form->checkbox($model,'capitalPurchase'); ?>
+		<?php echo $form->error($model,'capitalPurchase'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'expensePaid'); ?>
 		<?php echo $form->dropDownList($model,'expensePaid', $model->getStatusOptions()); ?>
 		<?php echo $form->error($model,'expensePaid'); ?>

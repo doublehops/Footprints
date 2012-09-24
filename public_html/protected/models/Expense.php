@@ -55,7 +55,7 @@ class Expense extends CActiveRecord
 			array('expenseTotal', 'numerical', 'integerOnly'=>false),
 			array('expenseName', 'length', 'max'=>100),
 			array('expenseTotal', 'length', 'max'=>9),
-			array('expenseDescription, expensePaidDate', 'safe'),
+			array('expenseDescription, expensePaidDate, capitalPurchase', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, creditorId, expenseName, expenseDescription, expenseTotal, expensePaid, expensePaidDate, created, lastModified, lastUpdatedBy, active', 'safe', 'on'=>'search'),
@@ -121,6 +121,7 @@ class Expense extends CActiveRecord
 		
 		$expenseTotals['nonGSTTotal'] = 0;
 		$expenseTotals['subjectGSTTotal'] = 0;
+		$expenseTotals['capitalPurchases'] = 0;
 		
 		$criteria = $reportableOnly == 1 ? array('condition'=>"reportableExpense='1'") : '';
 		$expenseTypes=ExpenseType::model()->findAll($criteria);
@@ -160,11 +161,15 @@ class Expense extends CActiveRecord
 			{
 				$expenseArray[$expense->expenseType]['subjectGST'] += $expense->expenseTotal;
 				$expenseTotals['subjectGSTTotal'] += $expense->expenseTotal;
+				if($expense->capitalPurchase == 1) 
+    				$expenseTotals['capitalPurchases'] += $expense->expenseTotal - $expense->expenseTotal / Yii::app()->userInfo->gstRate;
 			}
 			else
 			{
 				$expenseArray[$expense->expenseType]['nonGST'] += $expense->expenseTotal;
 				$expenseTotals['nonGSTTotal'] += $expense->expenseTotal;
+				if($expense->capitalPurchase == 1) 
+				    $expenseTotals['capitalPurchases'] += $expense->expenseTotal;
 			}
 		}
 		

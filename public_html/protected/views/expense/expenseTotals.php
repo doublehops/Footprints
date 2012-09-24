@@ -52,3 +52,5 @@ $this->menu=array(
 		<td>$<?php echo CHtml::encode( number_format( $expenseTotals['expenseTotal'], 2 ) ) ?></td>
 	</tr>
 </table>
+
+<p>Capital purchases: <strong>$<?php echo CHtml::encode( number_format( $expenseTotals['capitalPurchases'], 2 ) ) ?></strong> (after GST removed)</p>
