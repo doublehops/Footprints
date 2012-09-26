@@ -132,4 +132,9 @@ class Client extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function getInvoiceUrl($data)
+	{
+        return CHtml::link($data->client->name, array("client/view", "id"=>$data->clientId));
+	}
 }

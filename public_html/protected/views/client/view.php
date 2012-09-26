@@ -23,6 +23,7 @@ $this->menu=array(
 		'businessId',
 		'active',
 		'created',
+		array('name'=>'Client Invoices','type'=>'raw','value'=>CHtml::link("Invoices", array("invoice/admin","client"=>$model->id))),
 		'lastModified',
 		'lastUpdatedBy',
 	),

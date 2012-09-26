@@ -39,11 +39,11 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'invoice-grid',
-	'dataProvider'=>$model->search(),
+	'dataProvider'=>$dataProvider,
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'client.name',
+		array('header'=>'Client','type'=>'raw','value'=>'Client::getinvoiceUrl($data)'),
 		'invoiceDate',
 		'dueDate',
 		'invoiceTotal',

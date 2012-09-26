@@ -202,12 +202,26 @@ class InvoiceController extends Controller
 	 */
 	public function actionAdmin()
 	{
+        $criteria = new CDbCriteria;
+        $criteria->order = 'invoiceDate DESC';
+
+        if(isset($_GET['client']))
+            $criteria->condition = 'clientId='. (int)$_GET['client'];
+        else
+            $criteria->condition = 'active=1';
+
+        $dataProvider = new CActiveDataProvider('Invoice', array(
+                'criteria'=>$criteria,
+                'pagination'=>array(
+                    'pageSize'=>20,
+                ),
+        ));
+
 		$model=new Invoice('search');
-		if(isset($_GET['Invoice']))
-			$model->attributes=$_GET['Invoice'];
 
 		$this->render('admin',array(
 			'model'=>$model,
+			'dataProvider'=>$dataProvider,
 		));
 	}
 
