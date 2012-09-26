@@ -290,3 +290,8 @@ div.search-form
 .non-reportable {
 	background-color: lightpink;
 }
+
+.items a {
+    text-decoration: none;
+    color: #0066A4;
+}
