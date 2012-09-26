@@ -203,7 +203,7 @@ class InvoiceController extends Controller
 	public function actionAdmin()
 	{
         $criteria = new CDbCriteria;
-        $criteria->order = 'invoiceDate DESC';
+        $criteria->order = 'id DESC';
 
         if(isset($_GET['client']))
             $criteria->condition = 'clientId='. (int)$_GET['client'];
