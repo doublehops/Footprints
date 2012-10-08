@@ -30,16 +30,20 @@ $this->menu=array(
 	<?php echo CHtml::encode($data->dueDate); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('invoiceTotal')); ?>:</b>
-	<?php echo CHtml::encode($data->invoiceTotal); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('clientNotes')); ?>:</b>
 	<?php echo CHtml::encode($data->clientNotes); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('invoiceNotes')); ?>:</b>
 	<?php echo CHtml::encode($data->invoiceNotes); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('invoiceTotal')); ?>:</b>
+	<?php echo CHtml::encode($data->invoiceTotal); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('status')); ?>:</b>
+	<?php echo CHtml::encode($data->status); ?>
 	<br />
 
 </div>

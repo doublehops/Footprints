@@ -149,8 +149,10 @@ class InvoiceController extends Controller
 		if(isset($_POST['Invoice']))
 		{
 			$model->attributes=$_POST['Invoice'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+
+		    if($model->save())
+	    	    $this->redirect(array('view','id'=>$model->id));
+		
 		}
 
 		$this->render('update',array(

@@ -55,13 +55,38 @@ class Invoice extends CActiveRecord
 		return array(
 			array('clientId', 'required'),
 			array('clientId, status, active, lastUpdatedBy', 'numerical', 'integerOnly'=>true),
-			array('invoiceTotal', 'length', 'max'=>9),
 			array('invoiceDate,dueDate','date','format'=>'yyyy-mm-dd'),
 			array('clientNotes, invoiceNotes', 'safe'),
+			array('status', 'isStatusPaidValid'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, clientId, invoiceDate, dueDate, invoiceTotal, clientNotes, invoiceNotes, status, active, created, lastModified, lastUpdatedBy', 'safe', 'on'=>'search'),
 		);
+	}
+
+	public function isStatusPaidValid($attribute)
+	{
+        if($this->status == 2)
+        {
+            if(!$this->isInvoicePaidValid())
+                $this->addError($attribute, 'Payment total does not match invoice total.');
+        }
+	}
+
+	private function isInvoicePaidValid()
+	{
+        $payments = InvoicePayment::model()->findAll(array('condition'=>'invoiceId='.$this->id.' AND active=1'));
+        $modelId = $this->id;
+
+        $sql = 'SELECT SUM(amount) FROM InvoicePayment WHERE invoiceId=:invoiceId AND active=1';
+
+        $connection = Yii::app()->db;
+        $command=$connection->createCommand($sql);
+        $command->bindParam(':invoiceId', $modelId);
+        $response = $command->queryRow();
+
+        $epsilon = 0.01;
+        return abs($response['SUM(amount)'] - $this->invoiceTotal) < $epsilon ? true : false;
 	}
 
 	/**
