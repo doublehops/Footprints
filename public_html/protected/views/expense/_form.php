@@ -59,7 +59,15 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'expensePaidDate'); ?>
-		<?php echo $form->textField($model,'expensePaidDate'); ?>
+        <?php Yii::import('application.widgets.CJuiDateTimePicker.CJuiDateTimePicker'); ?>
+		<?php 
+            $this->widget('CJuiDateTimePicker',array(
+                'model'=>$model, //Model object
+                'attribute'=>'expensePaidDate', //attribute name
+                'mode'=>'date', //use "time","date" or "datetime" (default)
+                'options'=>array('dateFormat'=>'yy-mm-dd'), // jquery plugin options
+                'language'=>'',
+            )); ?>
 		<?php echo $form->error($model,'expensePaidDate'); ?>
 	</div>
 
