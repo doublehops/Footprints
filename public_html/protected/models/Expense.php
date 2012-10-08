@@ -122,6 +122,7 @@ class Expense extends CActiveRecord
 		$expenseTotals['nonGSTTotal'] = 0;
 		$expenseTotals['subjectGSTTotal'] = 0;
 		$expenseTotals['capitalPurchases'] = 0;
+		$expenseTotals['capitalPurchasesGST'] = 0;
 		
 		$criteria = $reportableOnly == 1 ? array('condition'=>"reportableExpense='1'") : '';
 		$expenseTypes=ExpenseType::model()->findAll($criteria);
@@ -162,14 +163,20 @@ class Expense extends CActiveRecord
 				$expenseArray[$expense->expenseType]['subjectGST'] += $expense->expenseTotal;
 				$expenseTotals['subjectGSTTotal'] += $expense->expenseTotal;
 				if($expense->capitalPurchase == 1) 
-    				$expenseTotals['capitalPurchases'] += $expense->expenseTotal - $expense->expenseTotal / Yii::app()->userInfo->gstRate;
+				{
+                    $expenseTotals['capitalPurchases'] += $expense->expenseTotal / ((Yii::app()->userInfo->gstRate / 100) + 1 );
+    				$expenseTotals['capitalPurchasesGST'] += $expense->expenseTotal;
+    			}
 			}
 			else
 			{
 				$expenseArray[$expense->expenseType]['nonGST'] += $expense->expenseTotal;
 				$expenseTotals['nonGSTTotal'] += $expense->expenseTotal;
 				if($expense->capitalPurchase == 1) 
+				{
 				    $expenseTotals['capitalPurchases'] += $expense->expenseTotal;
+    				$expenseTotals['capitalPurchasesGST'] += $expense->expenseTotal;
+    			}
 			}
 		}
 		
