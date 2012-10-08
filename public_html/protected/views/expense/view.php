@@ -23,6 +23,7 @@ $this->menu=array(
 		'expenseName',
 		'expenseDescription',
 		'expenseType',
+		array('name'=>'expenseType', 'type'=>'raw', 'value'=>Expense::getExpenseType($model["expenseType"], 'full')),
 		'expenseTotal',
 		'subjectGST',
 		'expensePaid',

@@ -241,4 +241,15 @@ class Expense extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+    
+    public function getExpenseType($id, $length='short')
+    {
+        $expenseType = ExpenseType::model()->findByPk($id);
+
+        if($length == 'full')
+            return '<span title="'. $expenseType->expenseName .'">'. $expenseType->expenseName .'</span>';
+
+        else
+        return '<span title="'. $expenseType->expenseName .'">'. substr($expenseType->expenseName, 0, 10) .'..</span>';
+    }
 }
