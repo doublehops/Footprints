@@ -120,6 +120,7 @@ class ExpenseController extends Controller
 			'expenseArray'=>$expenseResults['expenseArray'],
 			'expenseTotals'=>$expenseResults['expenseTotals'],
 			'basPeriod'=>$basPeriod,
+			'paymentValues'=>InvoicePayment::getPaymentTotals(),
 		));
 	
 	}

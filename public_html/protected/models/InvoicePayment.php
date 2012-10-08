@@ -138,4 +138,32 @@ class InvoicePayment extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function getPaymentTotals()
+	{
+	    $paymentArray = array();
+	    $paymentArray['total'] = 0;
+
+		$criteria = new CDbCriteria();
+
+		if(isset($_POST['BasPeriod']))
+		{
+			$period = BasPeriod::Model()->findByPk($_POST['BasPeriod']['title']);
+			
+			$criteria->condition = ' paymentDate >= \''. $period->periodStart .'\''.
+									' AND paymentDate <= \''. $period->periodEnd .'\''.
+									' AND active = \'1\'';
+		}
+
+		$payments = InvoicePayment::model()->findAll($criteria);
+
+		foreach($payments as $payment)
+		{
+            $paymentArray['total'] += $payment->amount;
+		}
+
+        $paymentArray['payments'] = $payments;
+
+		return $paymentArray;
+	}
 }

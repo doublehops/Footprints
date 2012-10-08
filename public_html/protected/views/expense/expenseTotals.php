@@ -55,3 +55,13 @@ $this->menu=array(
 
 <p>Capital purchases: <strong>$<?php echo CHtml::encode( number_format( $expenseTotals['capitalPurchases'], 2 ) ) ?></strong> (GST Ex)<br />
 Capital purchases: <strong>$<?php echo CHtml::encode( number_format( $expenseTotals['capitalPurchasesGST'], 2 ) ) ?></strong> (GST Inc)</p>
+
+<h1>Payment data</h1>
+<table>
+    <tr><td>Invoice</td><td>Amount</td></tr>
+    <?php foreach($paymentValues['payments'] as $payment ) : ?>
+    <tr><td><?php echo CHtml::link($payment->invoiceId, array('invoice/view', 'id'=>$payment->invoiceId)) ?></td><td>$<?php echo number_format($payment->amount, 2) ?></td></tr>
+    <?php endforeach ?>
+</table>
+
+<p>Total payments received: $<strong><?php echo number_format($paymentValues['total'], 2) ?></strong></p>
