@@ -163,6 +163,7 @@ class InvoicePayment extends CActiveRecord
 		}
 
         $paymentArray['GSTReceived'] = $paymentArray['total'] - $paymentArray['total'] / ((Yii::app()->userInfo->gstRate / 100) +1);
+        $paymentArray['totalEx'] = $paymentArray['total'] - $paymentArray['GSTReceived'];
         $paymentArray['payments'] = $payments;
 
 		return $paymentArray;

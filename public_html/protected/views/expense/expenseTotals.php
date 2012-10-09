@@ -80,6 +80,7 @@ Capital purchases: <strong>$<?php echo CHtml::encode( number_format( $expenseTot
 </table>
 
 <dl id="revenue">
-    <dt>Total payments received: </dt><dd>$<?php echo number_format($paymentValues['total'], 2) ?></dd>
+    <dt>Total received (Inc): </dt><dd>$<?php echo number_format($paymentValues['total'], 2) ?></dd>
+    <dt>Total received (Ex): </dt><dd>$<?php echo number_format($paymentValues['totalEx'], 2) ?></dd>
     <dt>GST received: </dt><dd>$<?php echo number_format($paymentValues['GSTReceived'], 2) ?></dd>
 </dl>

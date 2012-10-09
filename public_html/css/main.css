@@ -302,10 +302,10 @@ div.search-form
 
 #revenue dt {
     clear: both;
-    width: 165px;
+    width: 125px;
 }
 
 #revenue dd {
-    width: 75px;
+    width: 65px;
     text-align: right;
 }
