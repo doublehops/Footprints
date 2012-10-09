@@ -121,6 +121,7 @@ class Expense extends CActiveRecord
 		
 		$expenseTotals['nonGSTTotal'] = 0;
 		$expenseTotals['subjectGSTTotal'] = 0;
+		$expenseTotals['totalGSTPaid'] = 0;
 		$expenseTotals['capitalPurchases'] = 0;
 		$expenseTotals['capitalPurchasesGST'] = 0;
 		
@@ -181,6 +182,7 @@ class Expense extends CActiveRecord
 		}
 		
 		$expenseTotals['expenseTotal'] = $expenseTotals['subjectGSTTotal'] + $expenseTotals['nonGSTTotal'];
+		$expenseTotals['totalGSTPaid'] = $expenseTotals['subjectGSTTotal'] - $expenseTotals['subjectGSTTotal'] / ((Yii::app()->userInfo->gstRate / 100) +1);
 		
 		return array('expenseArray'=>$expenseArray, 'expenseTotals'=>$expenseTotals);
 	}

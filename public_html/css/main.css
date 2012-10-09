@@ -295,3 +295,17 @@ div.search-form
     text-decoration: none;
     color: #0066A4;
 }
+
+#revenue dt, #revenue dd {
+    float: left;
+}
+
+#revenue dt {
+    clear: both;
+    width: 165px;
+}
+
+#revenue dd {
+    width: 75px;
+    text-align: right;
+}

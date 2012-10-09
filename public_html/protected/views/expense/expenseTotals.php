@@ -33,7 +33,9 @@ $this->menu=array(
     <?php $this->endWidget(); ?>
 </div>
 
-<h1>Calculate Expenses</h1>
+<hr />
+
+<h1>Expenses</h1>
 
 <table class="totalsTable">
 	<tr><th class="left">Expense name</th><th>Non-GST</th><th>Subject to GST</th><th>Total</th></tr>
@@ -51,17 +53,33 @@ $this->menu=array(
 		<td>$<?php echo CHtml::encode( number_format( $expenseTotals['subjectGSTTotal'], 2 ) ) ?></td>
 		<td>$<?php echo CHtml::encode( number_format( $expenseTotals['expenseTotal'], 2 ) ) ?></td>
 	</tr>
+	<tr>
+	    <td class="left">GST Paid</td>
+	    <td>&nbsp;</td>
+	    <td><strong>$<?php echo CHtml::encode( number_format( $expenseTotals['totalGSTPaid'], 2 ) ) ?></strong></td>
+	    <td>&nbsp;</td>
+	</tr>
 </table>
 
 <p>Capital purchases: <strong>$<?php echo CHtml::encode( number_format( $expenseTotals['capitalPurchases'], 2 ) ) ?></strong> (GST Ex)<br />
 Capital purchases: <strong>$<?php echo CHtml::encode( number_format( $expenseTotals['capitalPurchasesGST'], 2 ) ) ?></strong> (GST Inc)</p>
 
-<h1>Payment data</h1>
+<hr />
+
+<h1>Revenue</h1>
 <table>
-    <tr><td>Invoice</td><td>Amount</td></tr>
+    <tr><th>Invoice</th><th>Client</th><th>Amount</th><th>Payment Date</th></tr>
     <?php foreach($paymentValues['payments'] as $payment ) : ?>
-    <tr><td><?php echo CHtml::link($payment->invoiceId, array('invoice/view', 'id'=>$payment->invoiceId)) ?></td><td>$<?php echo number_format($payment->amount, 2) ?></td></tr>
+    <tr>
+        <td><?php echo CHtml::link($payment->invoiceId, array('invoice/view', 'id'=>$payment->invoiceId)) ?></td>
+        <td><?php echo CHtml::encode($payment->invoice->client->name) ?></td>
+        <td>$<?php echo number_format($payment->amount, 2) ?></td>
+        <td><?php echo CHtml::encode($payment->paymentDate) ?></td>
+    </tr>
     <?php endforeach ?>
 </table>
 
-<p>Total payments received: $<strong><?php echo number_format($paymentValues['total'], 2) ?></strong></p>
+<dl id="revenue">
+    <dt>Total payments received: </dt><dd>$<?php echo number_format($paymentValues['total'], 2) ?></dd>
+    <dt>GST received: </dt><dd>$<?php echo number_format($paymentValues['GSTReceived'], 2) ?></dd>
+</dl>
