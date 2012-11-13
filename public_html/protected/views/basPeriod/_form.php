@@ -17,13 +17,29 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'periodStart'); ?>
-		<?php echo $form->textField($model,'periodStart'); ?>
+        <?php Yii::import('application.widgets.CJuiDateTimePicker.CJuiDateTimePicker'); ?>
+		<?php 
+            $this->widget('CJuiDateTimePicker',array(
+                'model'=>$model, //Model object
+                'attribute'=>'periodStart', //attribute name
+                'mode'=>'date', //use "time","date" or "datetime" (default)
+                'options'=>array('dateFormat'=>'yy-mm-dd'), // jquery plugin options
+                'language'=>'',
+            )); ?>
 		<?php echo $form->error($model,'periodStart'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'periodEnd'); ?>
-		<?php echo $form->textField($model,'periodEnd'); ?>
+        <?php Yii::import('application.widgets.CJuiDateTimePicker.CJuiDateTimePicker'); ?>
+		<?php 
+            $this->widget('CJuiDateTimePicker',array(
+                'model'=>$model, //Model object
+                'attribute'=>'periodEnd', //attribute name
+                'mode'=>'date', //use "time","date" or "datetime" (default)
+                'options'=>array('dateFormat'=>'yy-mm-dd'), // jquery plugin options
+                'language'=>'',
+            )); ?>
 		<?php echo $form->error($model,'periodEnd'); ?>
 	</div>
 
