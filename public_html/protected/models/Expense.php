@@ -187,7 +187,7 @@ class Expense extends CActiveRecord
 		return array('expenseArray'=>$expenseArray, 'expenseTotals'=>$expenseTotals);
 	}
 			
-    public function getStatusOptions()
+    static function getStatusOptions()
     {
         return array(
             self::STATUS_UNPAID=>'Unpaid',
@@ -195,7 +195,7 @@ class Expense extends CActiveRecord
         );
     }
  
-    public function getStatusText($expensePaid)
+    static function getStatusText($expensePaid)
     {
         $options=self::getStatusOptions();
 
@@ -244,7 +244,7 @@ class Expense extends CActiveRecord
 		));
 	}
     
-    public function getExpenseType($id, $length='short')
+    static function getExpenseType($id, $length='short')
     {
         $expenseType = ExpenseType::model()->findByPk($id);
 
