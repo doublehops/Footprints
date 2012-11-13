@@ -133,7 +133,7 @@ class Client extends CActiveRecord
 		));
 	}
 
-	public function getInvoiceUrl($data)
+	static function getInvoiceUrl($data)
 	{
         return CHtml::link($data->client->name, array("client/view", "id"=>$data->clientId));
 	}

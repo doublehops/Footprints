@@ -171,7 +171,7 @@ class Invoice extends CActiveRecord
 		return $invoiceArray;
 	}
 	
-    public function getStatusOptions()
+    static function getStatusOptions()
     {
         return array(
             self::STATUS_UNPAID=>'Unpaid',
@@ -180,7 +180,7 @@ class Invoice extends CActiveRecord
         );
     }
  
-    public function getStatusText($status)
+    static function getStatusText($status)
     {
         $options=self::getStatusOptions();
 
