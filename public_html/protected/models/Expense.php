@@ -115,7 +115,7 @@ class Expense extends CActiveRecord
 		return true;
 	}
 	
-	public function getExpenseTotals($reportableOnly)
+	static function getExpenseTotals($reportableOnly)
 	{
 		$expenseArray = array();
 		

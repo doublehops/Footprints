@@ -139,7 +139,7 @@ class InvoicePayment extends CActiveRecord
 		));
 	}
 
-	public function getPaymentTotals()
+	static function getPaymentTotals()
 	{
 	    $paymentArray = array();
 	    $paymentArray['total'] = 0;
