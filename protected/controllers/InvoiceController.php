@@ -241,7 +241,7 @@ class InvoiceController extends Controller
 			if($this->_model===null)
 				throw new CHttpException(404,'The requested page does not exist.');
 
-	        $this->validateAssoc($this->getAssocKey($model));
+	        $this->validateAssoc($this->getAssocKey($this->_model));
 		}
 		return $this->_model;
 	}
