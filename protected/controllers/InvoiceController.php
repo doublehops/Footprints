@@ -209,7 +209,10 @@ class InvoiceController extends Controller
         $criteria->order = 'id DESC';
 
         if(isset($_GET['client']))
+        {
             $criteria->condition = 'clientId='. (int)$_GET['client'] .' && businessId='. Yii::app()->userInfo->business;
+            $this->validateAssoc((int)Yii::app()->request->getParam('client'));
+        }
         else
             $criteria->condition = 'active=1 && businessId='. Yii::app()->userInfo->business;
 
