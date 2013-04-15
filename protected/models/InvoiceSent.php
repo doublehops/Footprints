@@ -60,6 +60,7 @@ class InvoiceSent extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+		    'invoice'=>array(self::BELONGS_TO, 'Invoice', 'invoiceId'),
 		);
 	}
 
@@ -90,6 +91,12 @@ class InvoiceSent extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		// Force model to only show invoices for current business
+		$criteria->alias = 'isent';
+		$criteria->select = 'isent.*';
+		$criteria->join='LEFT JOIN Invoice ON Invoice.id=isent.invoiceId';
+		$criteria->condition='Invoice.businessId='. Yii::app()->userInfo->business;
+
 		$criteria->compare('id',$this->id);
 
 		$criteria->compare('invoiceId',$this->invoiceId);
@@ -102,7 +109,7 @@ class InvoiceSent extends CActiveRecord
 
 		$criteria->compare('notes',$this->notes,true);
 
-		$criteria->compare('active',$this->active);
+		$criteria->compare('isent.active',$this->active);
 
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria'=>$criteria,

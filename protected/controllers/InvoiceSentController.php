@@ -129,7 +129,15 @@ class InvoiceSentController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('InvoiceSent');
+		$dataProvider=new CActiveDataProvider('InvoiceSent',
+			array(
+				'criteria'=>array(
+    				'with'=>array('invoice'),
+	    			'condition'=>'businessId='. Yii::app()->userInfo->business
+				),
+				'pagination'=>array('pageSize'=>20),
+			)
+		);
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -161,6 +169,8 @@ class InvoiceSentController extends Controller
 				$this->_model=InvoiceSent::model()->findbyPk($_GET['id']);
 			if($this->_model===null)
 				throw new CHttpException(404,'The requested page does not exist.');
+
+			$this->validateAssoc($this->getAssocKey($this->_model));
 		}
 		return $this->_model;
 	}
@@ -177,4 +187,12 @@ class InvoiceSentController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+    /*
+     *  This method returns the businessId this record is associated to
+     */
+	private function getAssocKey($model)
+	{
+        return $model->invoice->businessId;
+    }
 }

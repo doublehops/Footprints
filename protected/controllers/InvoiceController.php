@@ -188,8 +188,8 @@ class InvoiceController extends Controller
 		$dataProvider=new CActiveDataProvider('Invoice',
 			array(
 				'criteria'=>array(
-				'with'=>array('client'),
-				'condition'=>'businessId='. Yii::app()->userInfo->business
+    				'with'=>array('client'),
+	    			'condition'=>'businessId='. Yii::app()->userInfo->business
 				),
 				'pagination'=>array('pageSize'=>20),
 			)
