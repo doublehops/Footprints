@@ -211,7 +211,7 @@ class InvoiceController extends Controller
         if(isset($_GET['client']))
         {
             $criteria->condition = 'clientId='. (int)$_GET['client'] .' && businessId='. Yii::app()->userInfo->business;
-            $this->validateAssoc((int)Yii::app()->request->getParam('client'));
+            $this->validateClientAssoc((int)Yii::app()->request->getParam('client'));
         }
         else
             $criteria->condition = 'active=1 && businessId='. Yii::app()->userInfo->business;
@@ -268,5 +268,14 @@ class InvoiceController extends Controller
 	private function getAssocKey($model)
 	{
         return $model->businessId;
+	}
+
+	private function validateClientAssoc($clientId)
+	{
+        $client = Client::model()->findByPk($clientId);
+        if($client == null)
+             throw new CHttpException(403, 'You are not authorised to access this record');
+
+        $this->validateAssoc($client->businessId);
 	}
 }
