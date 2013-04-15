@@ -59,18 +59,19 @@ class InvoiceController extends Controller
 	 */
 	public function actionView()
 	{
+		$model = $this->loadModel();
+	    $this->validateAssoc($this->getAssocKey($model));
+
 		$paymentDataProvider= new CActiveDataProvider('InvoicePayment', array(
 										'criteria'=>array(
 											'condition'=>'invoiceId=:invoiceId',
-											'params'=>array(':invoiceId'=>$this->loadModel()->id),
+											'params'=>array(':invoiceId'=>$model->id),
 										),
 										'pagination'=>array(
 											'pageSize'=>3,
 										),
 		));
 		
-		$model = $this->loadModel();
-
 		$this->render('invoiceView',array(
 			'data'=>$model,
 			'invoiceValues'=>$model->getInvoiceValues(),
@@ -81,6 +82,7 @@ class InvoiceController extends Controller
 	public function actionInvoicePrint()
 	{
 		$model = $this->loadModel();
+	    $this->validateAssoc($this->getAssocKey($model));
 		
 		$this->layout = 'invoice';
 		
@@ -93,6 +95,7 @@ class InvoiceController extends Controller
 	public function actionInvoicePdf()
 	{
 		$model = $this->loadModel();
+	    $this->validateAssoc($this->getAssocKey($model));
 		
 	/*	
 		$this->layout = 'invoiceTables';
@@ -114,6 +117,7 @@ class InvoiceController extends Controller
 	public function actionCreate()
 	{
 		$model=new Invoice;
+	    $this->validateAssoc($this->getAssocKey($model));
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -142,6 +146,7 @@ class InvoiceController extends Controller
 	public function actionUpdate()
 	{
 		$model=$this->loadModel();
+	    $this->validateAssoc($this->getAssocKey($model));
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -168,8 +173,9 @@ class InvoiceController extends Controller
 	{
 		if(Yii::app()->request->isPostRequest)
 		{
-			// we only allow deletion via POST request
-			$this->loadModel()->delete();
+            $model = $this->loadModel();
+	        $this->validateAssoc($this->getAssocKey($model));
+			$model()->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
@@ -208,14 +214,14 @@ class InvoiceController extends Controller
         $criteria->order = 'id DESC';
 
         if(isset($_GET['client']))
-            $criteria->condition = 'clientId='. (int)$_GET['client'];
+            $criteria->condition = 'clientId='. (int)$_GET['client'] .' && businessId='. Yii::app()->userInfo->business;
         else
-            $criteria->condition = 'active=1';
+            $criteria->condition = 'active=1 && businessId='. Yii::app()->userInfo->business;
 
         $dataProvider = new CActiveDataProvider('Invoice', array(
                 'criteria'=>$criteria,
                 'pagination'=>array(
-                    'pageSize'=>20,
+                'pageSize'=>20,
                 ),
         ));
 
@@ -254,5 +260,13 @@ class InvoiceController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+    /*
+     *  This method returns the businessId this record is associated to
+     */
+	private function getAssocKey($model)
+	{
+        return $model->businessId;
 	}
 }

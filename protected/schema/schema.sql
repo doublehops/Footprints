@@ -87,6 +87,7 @@ lastUpdatedBy int(32) NOT NULL,primary key(`id`)
 
 CREATE TABLE Invoice (
 id int(32) auto_increment NOT NULL,
+businessId int(32) NOT NULL,
 clientId int(32) NOT NULL,
 invoiceDate date,
 dueDate date,

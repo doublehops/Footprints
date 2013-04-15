@@ -20,4 +20,14 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
+
+
+    /*
+     *  This method is used to ensure each user is only allowed to get an associated business for their business
+     */
+	public function validateAssoc($modelId)
+	{
+       if(Yii::app()->userInfo->business != $modelId)
+            throw new CHttpException(403, 'You are not authorised to access this record');
+	}
 }
