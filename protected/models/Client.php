@@ -110,6 +110,7 @@ class Client extends CActiveRecord
 
 		// Force model to only show clients for current business
 		$criteria->condition='businessId='. Yii::app()->userInfo->business;
+	    $criteria->order='name ASC';
 			return new CActiveDataProvider('Client', array(
 			'criteria'=>$criteria,
 		));
