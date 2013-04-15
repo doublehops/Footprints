@@ -54,8 +54,10 @@ class ClientController extends Controller
 	 */
 	public function actionView()
 	{
+        $model = $this->loadModel();
+
 		$this->render('view',array(
-			'model'=>$this->loadModel(),
+			'model'=>$model,
 		));
 	}
 
@@ -104,7 +106,7 @@ class ClientController extends Controller
 	{
 		$model=$this->loadModel();
 		$contactInfo=$model->contactInfo;
-		
+
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -139,7 +141,8 @@ class ClientController extends Controller
 		if(Yii::app()->request->isPostRequest)
 		{
 			// we only allow deletion via POST request
-			$this->loadModel()->delete();
+			$model = $this->loadModel();
+	        $model->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
@@ -186,6 +189,8 @@ class ClientController extends Controller
 				$this->_model=Client::model()->findbyPk($_GET['id']);
 			if($this->_model===null)
 				throw new CHttpException(404,'The requested page does not exist.');
+	        
+	        $this->validateAssoc($this->getAssocKey($this->_model));
 		}
 		return $this->_model;
 	}
@@ -201,5 +206,13 @@ class ClientController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+    /*
+     *  This method returns the businessId this record is associated to
+     */
+	private function getAssocKey($model)
+	{
+        return $model->businessId;
 	}
 }
