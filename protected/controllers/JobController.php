@@ -160,7 +160,15 @@ class JobController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Job');
+		$dataProvider=new CActiveDataProvider('Job',
+			array(
+				'criteria'=>array(
+    				'with'=>array('invoice'),
+	    			'condition'=>'businessId='. Yii::app()->userInfo->business
+				),
+				'pagination'=>array('pageSize'=>20),
+			)
+		);
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -192,6 +200,8 @@ class JobController extends Controller
 				$this->_model=Job::model()->findbyPk($_GET['id']);
 			if($this->_model===null)
 				throw new CHttpException(404,'The requested page does not exist.');
+
+	        $this->validateAssoc($this->getAssocKey($this->_model));
 		}
 		return $this->_model;
 	}
@@ -207,5 +217,13 @@ class JobController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+    /*
+     *  This method returns the businessId this record is associated to
+     */
+	private function getAssocKey($model)
+	{
+        return $model->invoice->businessId;
 	}
 }

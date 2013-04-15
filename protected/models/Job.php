@@ -120,6 +120,12 @@ class Job extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		// Force model to only show invoices for current business
+		$criteria->alias = 'Job';
+		$criteria->select = 'Job.*';
+		$criteria->join='LEFT JOIN Invoice ON Invoice.id=Job.invoiceId';
+		$criteria->condition='Invoice.businessId='. Yii::app()->userInfo->business;
+
 		$criteria->compare('id',$this->id);
 
 		$criteria->compare('invoiceId',$this->invoiceId);
@@ -136,7 +142,7 @@ class Job extends CActiveRecord
 
 		$criteria->compare('jobNotes',$this->jobNotes,true);
 
-		$criteria->compare('active',$this->active);
+		$criteria->compare('Job.active',$this->active);
 
 		$criteria->compare('created',$this->created,true);
 
