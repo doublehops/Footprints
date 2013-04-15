@@ -73,6 +73,7 @@ class PaymentMethodController extends Controller
 		if(isset($_POST['PaymentMethod']))
 		{
 			$model->attributes=$_POST['PaymentMethod'];
+			$model->businessId=Yii::app()->userInfo->business;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -129,7 +130,12 @@ class PaymentMethodController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('PaymentMethod');
+		$dataProvider=new CActiveDataProvider('PaymentMethod',
+			array(
+				'criteria'=>array(
+				    'condition'=>'businessId='. Yii::app()->userInfo->business,
+				),
+		));
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -161,6 +167,8 @@ class PaymentMethodController extends Controller
 				$this->_model=PaymentMethod::model()->findbyPk($_GET['id']);
 			if($this->_model===null)
 				throw new CHttpException(404,'The requested page does not exist.');
+
+			$this->validateAssoc($this->getAssocKey($this->_model));
 		}
 		return $this->_model;
 	}
@@ -176,5 +184,13 @@ class PaymentMethodController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+    /*
+     *  This method returns the businessId this record is associated to
+     */
+	private function getAssocKey($model)
+	{
+        return $model->businessId;
 	}
 }

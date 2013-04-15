@@ -80,6 +80,9 @@ class PaymentMethod extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		// Force model to only show invoices for current business
+        $criteria->condition = 'businessId='. Yii::app()->userInfo->business;
+
 		$criteria->compare('id',$this->id);
 
 		$criteria->compare('name',$this->name,true);

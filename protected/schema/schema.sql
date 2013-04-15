@@ -120,6 +120,7 @@ primary key(`id`)
 
 CREATE TABLE PaymentMethod (
 id int(32) NOT NULL AUTO_INCREMENT,
+businessId INT (32) NOT NULL,
 name varchar(50) NOT NULL,
 active tinyint(4) NOT NULL DEFAULT '1',
 primary key(`id`)
