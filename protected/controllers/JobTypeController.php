@@ -130,7 +130,7 @@ class JobTypeController extends Controller
 	public function actionIndex()
 	{
 		$dataProvider=new CActiveDataProvider('JobType',
-				array(
+			array(
 				'criteria'=>array(
 	    			'condition'=>'businessId='. Yii::app()->userInfo->business
 				),

@@ -29,7 +29,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'expenseType'); ?>
-		<?php echo $form->dropDownList($model,'expenseType', CHtml::listData(ExpenseType::model()->findAll(array('order'=>'expenseName')) , 'id', 'expenseName') ); ?>
+		<?php echo $form->dropDownList($model,'expenseType', CHtml::listData(ExpenseType::model()->findAll(array('condition'=>'businessId='.Yii::app()->userInfo->business,'order'=>'expenseName')) , 'id', 'expenseName') ); ?>
 		<?php echo $form->error($model,'expenseType'); ?>
 	</div>
 
