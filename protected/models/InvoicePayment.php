@@ -114,6 +114,11 @@ class InvoicePayment extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		$criteria->alias = 'ip';
+		$criteria->select = 'ip.*';
+		$criteria->join='LEFT JOIN Invoice i ON i.id=ip.invoiceId';
+		$criteria->condition = 'i.businessId='. Yii::app()->userInfo->business;
+
 		$criteria->compare('id',$this->id);
 
 		$criteria->compare('invoiceId',$this->invoiceId);
@@ -126,7 +131,7 @@ class InvoicePayment extends CActiveRecord
 
 		$criteria->compare('notes',$this->notes,true);
 
-		$criteria->compare('active',$this->active);
+		$criteria->compare('ip.active',$this->active);
 
 		$criteria->compare('created',$this->created,true);
 

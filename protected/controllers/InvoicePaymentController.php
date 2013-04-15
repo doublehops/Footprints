@@ -166,7 +166,14 @@ class InvoicePaymentController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('InvoicePayment');
+		$dataProvider=new CActiveDataProvider('InvoicePayment', 
+		    array(
+                'criteria'=>array(
+                    'with'=>array('invoice'),
+                    'condition'=>'invoice.businessId='. Yii::app()->userInfo->business,
+                ),
+		    )
+		);
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -198,6 +205,8 @@ class InvoicePaymentController extends Controller
 				$this->_model=InvoicePayment::model()->findbyPk($_GET['id']);
 			if($this->_model===null)
 				throw new CHttpException(404,'The requested page does not exist.');
+
+			$this->validateAssoc($this->getAssocKey($this->_model));
 		}
 		return $this->_model;
 	}
@@ -213,5 +222,13 @@ class InvoicePaymentController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+    /*
+     *  This method returns the businessId this record is associated to
+     */
+	private function getAssocKey($model)
+	{
+        return $model->invoice->businessId;
 	}
 }
