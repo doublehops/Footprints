@@ -27,7 +27,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'jobTypeId'); ?>
-		<?php echo $form->dropDownList($model,'jobTypeId', CHtml::listData(JobType::model()->findAll() , 'id', 'jobName') ); ?>
+		<?php echo $form->dropDownList($model,'jobTypeId', CHtml::listData(JobType::model()->findAllByAttributes(array('businessId'=>Yii::app()->userInfo->business)) , 'id', 'jobName') ); ?>
 		<?php echo $form->error($model,'jobTypeId'); ?>
 	</div>
 
