@@ -157,7 +157,18 @@ class ClientController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Client');
+        $criteria = new CDbCriteria;
+        $criteria->order = 'name ASC';
+
+        $criteria->condition = 'active=1 && businessId='. Yii::app()->userInfo->business;
+
+		$dataProvider=new CActiveDataProvider('Client', array(
+            'criteria'=>$criteria,
+            'pagination'=>array(
+                'pageSize'=>20,
+            ),
+		));
+
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

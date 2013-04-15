@@ -154,7 +154,16 @@ class CreditorController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Creditor');
+        $criteria = new CDbCriteria;
+        $criteria->order = 'name ASC';
+        $criteria->condition = 'businessId='. Yii::app()->userInfo->business;
+
+		$dataProvider=new CActiveDataProvider('Creditor', array(
+		        'criteria'=>$criteria,
+                'pagination'=>array(
+                    'pageSize'=>20,
+                ),
+		));
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -186,6 +195,8 @@ class CreditorController extends Controller
 				$this->_model=Creditor::model()->findbyPk($_GET['id']);
 			if($this->_model===null)
 				throw new CHttpException(404,'The requested page does not exist.');
+
+	        $this->validateAssoc($this->getAssocKey($this->_model));
 		}
 		return $this->_model;
 	}
@@ -201,5 +212,13 @@ class CreditorController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+    /*
+     *  This method returns the businessId this record is associated to
+     */
+	private function getAssocKey($model)
+	{
+        return $model->businessId;
 	}
 }
