@@ -60,7 +60,6 @@ class InvoiceController extends Controller
 	public function actionView()
 	{
 		$model = $this->loadModel();
-	    $this->validateAssoc($this->getAssocKey($model));
 
 		$paymentDataProvider= new CActiveDataProvider('InvoicePayment', array(
 										'criteria'=>array(
@@ -82,7 +81,6 @@ class InvoiceController extends Controller
 	public function actionInvoicePrint()
 	{
 		$model = $this->loadModel();
-	    $this->validateAssoc($this->getAssocKey($model));
 		
 		$this->layout = 'invoice';
 		
@@ -95,7 +93,6 @@ class InvoiceController extends Controller
 	public function actionInvoicePdf()
 	{
 		$model = $this->loadModel();
-	    $this->validateAssoc($this->getAssocKey($model));
 		
 	/*	
 		$this->layout = 'invoiceTables';
@@ -146,7 +143,6 @@ class InvoiceController extends Controller
 	public function actionUpdate()
 	{
 		$model=$this->loadModel();
-	    $this->validateAssoc($this->getAssocKey($model));
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -174,7 +170,6 @@ class InvoiceController extends Controller
 		if(Yii::app()->request->isPostRequest)
 		{
             $model = $this->loadModel();
-	        $this->validateAssoc($this->getAssocKey($model));
 			$model()->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -245,6 +240,8 @@ class InvoiceController extends Controller
 				$this->_model=Invoice::model()->findbyPk($_GET['id']);
 			if($this->_model===null)
 				throw new CHttpException(404,'The requested page does not exist.');
+
+	        $this->validateAssoc($this->getAssocKey($model));
 		}
 		return $this->_model;
 	}
