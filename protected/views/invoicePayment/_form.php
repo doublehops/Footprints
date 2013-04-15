@@ -17,7 +17,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'paymentMethod'); ?>
-		<?php echo $form->dropDownList($model,'paymentMethod', CHtml::listData(PaymentMethod::model()->findAll() , 'id', 'name') ); ?>
+		<?php echo $form->dropDownList($model,'paymentMethod', CHtml::listData(PaymentMethod::model()->findAllByAttributes(array('businessId'=>Yii::app()->userInfo->business)) , 'id', 'name') ); ?>
 		<?php echo $form->error($model,'paymentMethod'); ?>
 	</div>
 
