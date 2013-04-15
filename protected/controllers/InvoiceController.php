@@ -117,7 +117,6 @@ class InvoiceController extends Controller
 	public function actionCreate()
 	{
 		$model=new Invoice;
-	    $this->validateAssoc($this->getAssocKey($model));
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -125,6 +124,7 @@ class InvoiceController extends Controller
 		if(isset($_POST['Invoice']))
 		{
 			$model->attributes=$_POST['Invoice'];
+			$model->businessId=Yii::app()->userInfo->business;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
