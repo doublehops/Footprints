@@ -213,6 +213,12 @@ class Expense extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		// Force model to only show invoices for current business
+		$criteria->alias = 'Expense';
+		$criteria->select = 'Expense.*';
+		$criteria->join='LEFT JOIN Creditor ON Creditor.id=Expense.creditorId';
+		$criteria->condition='Creditor.businessId='. Yii::app()->userInfo->business;
+
 		$criteria->compare('id',$this->id);
 
 		$criteria->compare('creditorId',$this->creditorId);
@@ -235,7 +241,7 @@ class Expense extends CActiveRecord
 
 		$criteria->compare('lastUpdatedBy',$this->lastUpdatedBy);
 
-		$criteria->compare('active',$this->active);
+		$criteria->compare('Expense.active',$this->active);
 		
 		$criteria->order = "id DESC";
 		

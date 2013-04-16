@@ -153,7 +153,6 @@ class ExpenseController extends Controller
 			array(
 				'criteria'=>array(
 				'with'=>array('creditor'),
-				'with'=>array('expenseType'),
 				'condition'=>'businessId='. Yii::app()->userInfo->business
 				),
 			)
@@ -190,6 +189,8 @@ class ExpenseController extends Controller
 				$this->_model=Expense::model()->findbyPk($_GET['id']);
 			if($this->_model===null)
 				throw new CHttpException(404,'The requested page does not exist.');
+
+	        $this->validateAssoc($this->getAssocKey($this->_model));
 		}
 		return $this->_model;
 	}
@@ -205,5 +206,13 @@ class ExpenseController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+    /*
+     *  This method returns the businessId this record is associated to
+     */
+	private function getAssocKey($model)
+	{
+        return $model->creditor->businessId;
 	}
 }
