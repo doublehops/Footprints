@@ -143,7 +143,7 @@ class Expense extends CActiveRecord
 		$criteria = new CDbCriteria();
         $criteria->alias = 'e';
         $criteria->join = 'LEFT JOIN ExpenseType et on et.id=e.expenseType';
-        $criteria->join = 'LEFT JOIN Creditor c on c.id=e.creditorId';
+        $criteria->join .= ' LEFT JOIN Creditor c on c.id=e.creditorId';
 
 		$criteria->condition = 'e.expensePaid = 1 AND e.active = 1 AND c.businessId='. Yii::app()->userInfo->business;
 		if($reportableOnly == 1)
