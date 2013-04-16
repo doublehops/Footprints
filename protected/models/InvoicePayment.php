@@ -151,13 +151,17 @@ class InvoicePayment extends CActiveRecord
 
 		$criteria = new CDbCriteria();
 
+        $criteria->alias = 'ip';
+        $criteria->join = 'LEFT JOIN Invoice i ON i.id=ip.invoiceId';
+        $criteria->condition = 'i.businessId='. Yii::app()->userInfo->business;
+
 		if(isset($_POST['BasPeriod']))
 		{
 			$period = BasPeriod::Model()->findByPk($_POST['BasPeriod']['title']);
 			
-			$criteria->condition = ' paymentDate >= \''. $period->periodStart .'\''.
+			$criteria->condition .= ' AND paymentDate >= \''. $period->periodStart .'\''.
 									' AND paymentDate <= \''. $period->periodEnd .'\''.
-									' AND active = \'1\'';
+									' AND ip.active = \'1\'';
 		}
 
 		$payments = InvoicePayment::model()->findAll($criteria);
