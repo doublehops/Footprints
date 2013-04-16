@@ -124,9 +124,12 @@ class Expense extends CActiveRecord
 		$expenseTotals['totalGSTPaid'] = 0;
 		$expenseTotals['capitalPurchases'] = 0;
 		$expenseTotals['capitalPurchasesGST'] = 0;
+
+		$conditionStr = 'businessId='. Yii::app()->userInfo->business;
+		if($reportableOnly == 1)
+		    $conditionStr .= ' AND reportableExpense=\'1\'';
 		
-		$criteria = $reportableOnly == 1 ? array('condition'=>"reportableExpense='1'") : '';
-		$expenseTypes=ExpenseType::model()->findAll($criteria);
+		$expenseTypes=ExpenseType::model()->findAll(array('condition'=>$conditionStr));
 
 		foreach($expenseTypes as $expenseType)
 		{
@@ -140,8 +143,9 @@ class Expense extends CActiveRecord
 		$criteria = new CDbCriteria();
         $criteria->alias = 'e';
         $criteria->join = 'LEFT JOIN ExpenseType et on et.id=e.expenseType';
+        $criteria->join = 'LEFT JOIN Creditor c on c.id=e.creditorId';
 
-		$criteria->condition = 'e.expensePaid = 1 AND e.active = 1';
+		$criteria->condition = 'e.expensePaid = 1 AND e.active = 1 AND c.businessId='. Yii::app()->userInfo->business;
 		if($reportableOnly == 1)
 		    $criteria->condition .= ' AND et.reportableExpense = 1';
 
